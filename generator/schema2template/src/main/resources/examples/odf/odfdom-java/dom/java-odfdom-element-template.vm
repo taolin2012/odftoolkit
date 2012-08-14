@@ -103,6 +103,9 @@
 #end
 #end
 ##
+## Flag of whether supporting RDFa in content metadata
+#set ($supportRDFa = false)
+##
 ## Begin Code
 #include('copyright.txt')
 /*
@@ -156,7 +159,6 @@ import org.odftoolkit.odfdom.dom.attribute.${childNS}.$childClassname;
 #if ($baseimport)
 import ${baseimport};
 #end
-
 ##
 ## ---------------------------------------------------
 ##  Class
@@ -316,6 +318,10 @@ public class $classname extends $baseclassname {
 #else
 		attr.set${model.camelCase($simpleValue)}Value($aParam.${simpleValue}Value());
 #end
+#if ($aClassname.startsWith("Xhtml"))
+#set ($supportRDFa = true)
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
+#end
 	}
 #end
 #end
@@ -457,5 +463,29 @@ public class $classname extends $baseclassname {
 			this.appendChild(this.getOwnerDocument().createTextNode(content));
 		}
 	 }
+#end
+## -----------------------------------------------------
+##  setTextContent for RDFa in content metadata update
+## -----------------------------------------------------
+#if ($supportRDFa)
+
+	/**
+	 * Set text content. Only elements which are allowed to have text content offer this method.
+	 */
+	public void setTextContent(String content){
+		super.setTextContent(content);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
+	}
+	
+	protected void onRemoveNode() {
+		super.onRemoveNode();
+		((OdfFileDom) this.ownerDocument).getInContentMetadataCache().remove(
+				this);
+	}
+
+	protected void onInsertNode() {
+		super.onInsertNode();
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
+	}
 #end
 }

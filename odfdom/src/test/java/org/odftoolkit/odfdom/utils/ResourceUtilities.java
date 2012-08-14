@@ -31,83 +31,130 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.odftoolkit.odfdom.pkg.rdfa.Util;
+
 /** Test utitility class providing resources for the test in- and output */
 public final class ResourceUtilities {
 
 	private ResourceUtilities() {
 	}
 
-	/** The relative path of the test file will be resolved and the absolute will be returned
-	 * @param relativeFilePath Path of the test resource relative to <code>src/test/resource/</code>.
+	/**
+	 * The relative path of the test file will be resolved and the absolute will
+	 * be returned
+	 * 
+	 * @param relativeFilePath
+	 *            Path of the test resource relative to
+	 *            <code>src/test/resource/</code>.
 	 * @return the absolute path of the test file
-	 * @throws FileNotFoundException If the file could not be found
+	 * @throws FileNotFoundException
+	 *             If the file could not be found
 	 */
-	public static String getAbsolutePath(String relativeFilePath) throws FileNotFoundException {
+	public static String getAbsolutePath(String relativeFilePath)
+			throws FileNotFoundException {
 		URI uri = null;
 		try {
-			uri = ResourceUtilities.class.getClassLoader().getResource(relativeFilePath).toURI();
+			uri = ResourceUtilities.class.getClassLoader()
+					.getResource(relativeFilePath).toURI();
+			uri = new URI(Util.toExternalForm(uri));
 		} catch (URISyntaxException ex) {
-			Logger.getLogger(ResourceUtilities.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(ResourceUtilities.class.getName()).log(
+					Level.SEVERE, null, ex);
 		}
 		if (uri == null) {
-			throw new FileNotFoundException("Could not find the file '" + relativeFilePath + "'!");
+			throw new FileNotFoundException("Could not find the file '"
+					+ relativeFilePath + "'!");
 		}
+
 		return uri.getPath();
 	}
 
-	/** The relative path of the test file will be resolved and the absolute will be returned
-	 * @param relativeFilePath Path of the test resource relative to <code>src/test/resource/</code>.
+	/**
+	 * The relative path of the test file will be resolved and the absolute will
+	 * be returned
+	 * 
+	 * @param relativeFilePath
+	 *            Path of the test resource relative to
+	 *            <code>src/test/resource/</code>.
 	 * @return the URI created based on the relativeFilePath
-	 * @throws URISyntaxException if no URI could be created from the given relative path
+	 * @throws URISyntaxException
+	 *             if no URI could be created from the given relative path
 	 */
 	public static URI getURI(String relativeFilePath) throws URISyntaxException {
-		String filePath = "file:" + ResourceUtilities.class.getClassLoader().getResource(relativeFilePath).getPath();
-		return new URI(filePath);		
-		//return ResourceUtilities.class.getClassLoader().getResource(relativeFilePath).toURI();
+		String filePath = "file:"
+				+ ResourceUtilities.class.getClassLoader()
+						.getResource(relativeFilePath).getPath();
+		filePath = Util.toExternalForm(new URI(filePath));
+		return new URI(filePath);
+		// return
+		// ResourceUtilities.class.getClassLoader().getResource(relativeFilePath).toURI();
 	}
 
-	/** The relative path of the test file will be used to determine an absolute
-	 *  path to a temporary directory in the output directory.
-	 * @param relativeFilePath Path of the test resource relative to <code>src/test/resource/</code>.
+	/**
+	 * The relative path of the test file will be used to determine an absolute
+	 * path to a temporary directory in the output directory.
+	 * 
+	 * @param relativeFilePath
+	 *            Path of the test resource relative to
+	 *            <code>src/test/resource/</code>.
 	 * @return absolute path to a test output
-	 * @throws IOException if no absolute Path could be created.
+	 * @throws IOException
+	 *             if no absolute Path could be created.
 	 */
-	public static String getTestOutput(String relativeFilePath) throws IOException {
+	public static String getTestOutput(String relativeFilePath)
+			throws IOException {
 		return File.createTempFile(relativeFilePath, null).getAbsolutePath();
 	}
 
-	/** The Input of the test file will be resolved and the absolute will be returned
-	 * @param relativeFilePath Path of the test resource relative to <code>src/test/resource/</code>.
+	/**
+	 * The Input of the test file will be resolved and the absolute will be
+	 * returned
+	 * 
+	 * @param relativeFilePath
+	 *            Path of the test resource relative to
+	 *            <code>src/test/resource/</code>.
 	 * @return the absolute path of the test file
 	 */
 	public static InputStream getTestResourceAsStream(String relativeFilePath) {
-		return ResourceUtilities.class.getClassLoader().getResourceAsStream(relativeFilePath);
+		return ResourceUtilities.class.getClassLoader().getResourceAsStream(
+				relativeFilePath);
 	}
 
-	/** Relative to the test output directory a test file will be returned dependent on the relativeFilePath provided.
-	 * @param relativeFilePath Path of the test output resource relative to <code>target/test-classes/</code>.
+	/**
+	 * Relative to the test output directory a test file will be returned
+	 * dependent on the relativeFilePath provided.
+	 * 
+	 * @param relativeFilePath
+	 *            Path of the test output resource relative to
+	 *            <code>target/test-classes/</code>.
 	 * @return the empty <code>File</code> of the test output (to be filled)
 	 */
 	public static File newTestOutputFile(String relativeFilePath) {
 		String filepath = null;
 		try {
-			filepath = ResourceUtilities.class.getClassLoader().getResource("").toURI().getPath() + relativeFilePath;
+			filepath = ResourceUtilities.class.getClassLoader().getResource("")
+					.toURI().getPath()
+					+ relativeFilePath;
 		} catch (URISyntaxException ex) {
-			Logger.getLogger(ResourceUtilities.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(ResourceUtilities.class.getName()).log(
+					Level.SEVERE, null, ex);
 		}
 		return new File(filepath);
 	}
 
-	/** 
-	 * @return the absolute path of the test output folder, which is usually <code>target/test-classes/</code>.
+	/**
+	 * @return the absolute path of the test output folder, which is usually
+	 *         <code>target/test-classes/</code>.
 	 */
 	public static String getTestOutputFolder() {
 		String testFolder = null;
 		try {
-			testFolder = ResourceUtilities.class.getClassLoader().getResource("").toURI().getPath();
+			testFolder = ResourceUtilities.class.getClassLoader()
+					.getResource("").toURI().getPath();
 		} catch (URISyntaxException ex) {
-			Logger.getLogger(ResourceUtilities.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(ResourceUtilities.class.getName()).log(
+					Level.SEVERE, null, ex);
 		}
-		return testFolder;		
+		return testFolder;
 	}
 }

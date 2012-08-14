@@ -21,7 +21,11 @@
  ************************************************************************/
 package org.odftoolkit.odfdom.dom;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,11 +33,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.transform.Templates;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.odftoolkit.odfdom.dom.element.office.OfficeBodyElement;
 import org.odftoolkit.odfdom.dom.element.office.OfficeMasterStylesElement;
 import org.odftoolkit.odfdom.dom.element.style.StyleMasterPageElement;
 import org.odftoolkit.odfdom.dom.element.table.TableTableElement;
+import org.odftoolkit.odfdom.dom.rdfa.BookmarkRDFMetadataExtractor;
 import org.odftoolkit.odfdom.incubator.doc.office.OdfOfficeMasterStyles;
 import org.odftoolkit.odfdom.incubator.doc.office.OdfOfficeStyles;
 import org.odftoolkit.odfdom.pkg.OdfElement;
@@ -41,11 +50,18 @@ import org.odftoolkit.odfdom.pkg.OdfFileDom;
 import org.odftoolkit.odfdom.pkg.OdfPackage;
 import org.odftoolkit.odfdom.pkg.OdfPackageDocument;
 import org.odftoolkit.odfdom.pkg.OdfValidationException;
+import org.odftoolkit.odfdom.pkg.OdfXMLHelper;
+import org.odftoolkit.odfdom.pkg.rdfa.Util;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.ErrorHandler;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.util.ResourceUtils;
 
 /**
  * A document in ODF is from the package view a directory with a media type.
@@ -391,5 +407,125 @@ public abstract class OdfSchemaDocument extends OdfPackageDocument {
 
 	public OdfFileDom getFileDom(OdfXMLFile file) throws Exception {
 		return getFileDom(getXMLFilePath(file));
+	}
+	
+	/**
+	 * Get all two types of RDF Metadata through GRDDL XSLT:
+	 * 
+	 * http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part1.html
+	 * #__RefHeading__1415068_253892949
+	 */
+	public Model getRDFMetadata() throws Exception {
+		Model m = getInContentMetadata().union(this.getManifestRDFMetadata());
+		return m;
+	}
+
+	/**
+	 * Get In Content RDF Metadata through GRDDL XSLT
+	 * 
+	 * http://docs.oasis-open.org/office
+	 * /v1.2/os/OpenDocument-v1.2-os-part1.html#__RefHeading__1415070_253892949
+	 */
+	public Model getInContentMetadata() throws Exception {
+		OdfXMLHelper helper = new OdfXMLHelper();
+		String filePath = "file:"
+				+ OdfPackageDocument.class.getClassLoader()
+						.getResource("grddl/odf2rdf.xsl").getPath();
+		URI uri = new URI(filePath);
+		InputSource inputSource = new InputSource(uri.toString());
+		Templates multiFileAccessTemplate = TransformerFactory.newInstance()
+				.newTemplates(new SAXSource(inputSource));
+		Model m = ModelFactory.createDefaultModel();
+
+		for (OdfXMLFile file : OdfXMLFile.values()) {
+			for (String internalPath : this.getPackage().getFilePaths()) {
+				if (Util.isSubPathOf(internalPath, this.getDocumentPath())
+						&& internalPath.endsWith(file.getFileName())) {
+					ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+					helper.transform(this.getPackage(), internalPath,
+							multiFileAccessTemplate, new StreamResult(out));
+					String RDFBaseUri = Util.getRDFBaseUri(this.getPackage()
+							.getBaseURI(), internalPath);
+					Model m1 = ModelFactory.createDefaultModel();
+					m1.read(new InputStreamReader(new ByteArrayInputStream(out
+							.toByteArray()), "utf-8"), RDFBaseUri);
+					// remove the last SLASH at the end of the RDFBaseUri:
+					// test_rdfmeta.odt/ --> test_rdfmeta.odt
+					ResourceUtils.renameResource(m1.getResource(RDFBaseUri),
+							RDFBaseUri.substring(0, RDFBaseUri.length() - 1));
+					if (m1.size() > 0) {
+						m = m.union(m1);
+					}
+
+				}
+			}
+		}
+		return m;
+		
+
+		
+	}
+	
+	/**
+	 * Get in-content metadata cache model
+	 * @return The in-content metadata cache model
+	 * @throws Exception
+	 */
+	public Model getInContentMetadataFromCache() throws Exception {
+		Model m = ModelFactory.createDefaultModel();
+		// find and merge the RDF triples cache from the OdfXMLFile files
+		for (OdfXMLFile file : OdfXMLFile.values()) {
+			for(Model m1 :this.getFileDom(file).getInContentMetadataCache().values()){
+				m=m.union(m1);
+			}
+		}
+		return m;
+	}
+
+	/**
+	 * Get RDF metadata from manifest.rdf and those rdf files registered in the
+	 * manifest.xml as "application/rdf+xml" through GRDDL XSLT
+	 * 
+	 * http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part1.html
+	 * #__RefHeading__1415072_253892949
+	 */
+	public Model getManifestRDFMetadata() throws Exception {
+		Model m = ModelFactory.createDefaultModel();
+
+		for (String internalPath : this.getPackage().getFilePaths()) {
+			if (Util.isSubPathOf(internalPath, this.getDocumentPath())
+					&& this.getPackage().getMediaTypeString(internalPath)
+							.endsWith("application/rdf+xml")) {
+				Model m1 = ModelFactory.createDefaultModel();
+				String RDFBaseUri = Util.getRDFBaseUri(this.getPackage()
+						.getBaseURI(), internalPath);
+				m1.read(new InputStreamReader(this.getPackage().getInputStream(
+						internalPath), "utf-8"), RDFBaseUri);
+
+				// remove the last SLASH at the end of the RDFBaseUri:
+				// test_rdfmeta.odt/ --> test_rdfmeta.odt
+				ResourceUtils.renameResource(m1.getResource(RDFBaseUri),
+						RDFBaseUri.substring(0, RDFBaseUri.length() - 1));
+				if (m1.size() > 0) {
+					m = m.union(m1);
+				}
+			}
+		}
+		return m;
+	}
+	
+	/**
+	 * Get in-content metadata model of bookmarks
+	 * @return The in-content metadata model of bookmarks
+	 * @throws Exception
+	 */
+	public Model getBookmarkRDFMetadata() throws Exception{
+		Model m=ModelFactory.createDefaultModel();
+		for (OdfXMLFile file : OdfXMLFile.values()) {
+			OdfFileDom dom =getFileDom(file);
+			m=m.union(dom.getBookmarkRDFMetadata());
+		}
+		return m;
 	}
 }

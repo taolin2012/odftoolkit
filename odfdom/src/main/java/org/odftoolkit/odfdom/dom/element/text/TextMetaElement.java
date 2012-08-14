@@ -27,11 +27,9 @@
 package org.odftoolkit.odfdom.dom.element.text;
 
 import org.odftoolkit.odfdom.pkg.OdfElement;
-import org.odftoolkit.odfdom.pkg.ElementVisitor;
 import org.odftoolkit.odfdom.pkg.OdfFileDom;
 import org.odftoolkit.odfdom.pkg.OdfName;
 import org.odftoolkit.odfdom.dom.OdfDocumentNamespace;
-import org.odftoolkit.odfdom.dom.DefaultElementVisitor;
 import org.odftoolkit.odfdom.dom.element.dr3d.Dr3dSceneElement;
 import org.odftoolkit.odfdom.dom.element.draw.DrawAElement;
 import org.odftoolkit.odfdom.dom.element.draw.DrawCaptionElement;
@@ -62,17 +60,20 @@ import org.odftoolkit.odfdom.dom.attribute.xhtml.XhtmlPropertyAttribute;
 import org.odftoolkit.odfdom.dom.attribute.xml.XmlIdAttribute;
 
 /**
- * DOM implementation of OpenDocument element  {@odf.element text:meta}.
- *
+ * DOM implementation of OpenDocument element {@odf.element
+ * text:meta}.
+ * 
  */
 public class TextMetaElement extends OdfElement {
 
-	public static final OdfName ELEMENT_NAME = OdfName.newName(OdfDocumentNamespace.TEXT, "meta");
+	public static final OdfName ELEMENT_NAME = OdfName.newName(
+			OdfDocumentNamespace.TEXT, "meta");
 
 	/**
 	 * Create the instance of <code>TextMetaElement</code>
-	 *
-	 * @param  ownerDoc     The type is <code>OdfFileDom</code>
+	 * 
+	 * @param ownerDoc
+	 *            The type is <code>OdfFileDom</code>
 	 */
 	public TextMetaElement(OdfFileDom ownerDoc) {
 		super(ownerDoc, ELEMENT_NAME);
@@ -80,20 +81,25 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Get the element name
-	 *
-	 * @return  return   <code>OdfName</code> the name of element {@odf.element text:meta}.
+	 * 
+	 * @return return <code>OdfName</code> the name of element         {@odf.element
+	 *  text:meta}.
 	 */
 	public OdfName getOdfName() {
 		return ELEMENT_NAME;
 	}
 
 	/**
-	 * Receives the value of the ODFDOM attribute representation <code>XhtmlAboutAttribute</code> , See {@odf.attribute xhtml:about}
-	 *
-	 * @return - the <code>String</code> , the value or <code>null</code>, if the attribute is not set and no default value defined.
+	 * Receives the value of the ODFDOM attribute representation
+	 * <code>XhtmlAboutAttribute</code> , See {@odf.attribute
+	 * xhtml:about}
+	 * 
+	 * @return - the <code>String</code> , the value or <code>null</code>, if
+	 *         the attribute is not set and no default value defined.
 	 */
 	public String getXhtmlAboutAttribute() {
-		XhtmlAboutAttribute attr = (XhtmlAboutAttribute) getOdfAttribute(OdfDocumentNamespace.XHTML, "about");
+		XhtmlAboutAttribute attr = (XhtmlAboutAttribute) getOdfAttribute(
+				OdfDocumentNamespace.XHTML, "about");
 		if (attr != null) {
 			return String.valueOf(attr.getValue());
 		}
@@ -101,23 +107,32 @@ public class TextMetaElement extends OdfElement {
 	}
 
 	/**
-	 * Sets the value of ODFDOM attribute representation <code>XhtmlAboutAttribute</code> , See {@odf.attribute xhtml:about}
-	 *
-	 * @param xhtmlAboutValue   The type is <code>String</code>
+	 * Sets the value of ODFDOM attribute representation
+	 * <code>XhtmlAboutAttribute</code> , See {@odf.attribute
+	 * xhtml:about}
+	 * 
+	 * @param xhtmlAboutValue
+	 *            The type is <code>String</code>
 	 */
 	public void setXhtmlAboutAttribute(String xhtmlAboutValue) {
-		XhtmlAboutAttribute attr = new XhtmlAboutAttribute((OdfFileDom) this.ownerDocument);
+		XhtmlAboutAttribute attr = new XhtmlAboutAttribute(
+				(OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xhtmlAboutValue);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 
 	/**
-	 * Receives the value of the ODFDOM attribute representation <code>XhtmlContentAttribute</code> , See {@odf.attribute xhtml:content}
-	 *
-	 * @return - the <code>String</code> , the value or <code>null</code>, if the attribute is not set and no default value defined.
+	 * Receives the value of the ODFDOM attribute representation
+	 * <code>XhtmlContentAttribute</code> , See {@odf.attribute
+	 * xhtml:content}
+	 * 
+	 * @return - the <code>String</code> , the value or <code>null</code>, if
+	 *         the attribute is not set and no default value defined.
 	 */
 	public String getXhtmlContentAttribute() {
-		XhtmlContentAttribute attr = (XhtmlContentAttribute) getOdfAttribute(OdfDocumentNamespace.XHTML, "content");
+		XhtmlContentAttribute attr = (XhtmlContentAttribute) getOdfAttribute(
+				OdfDocumentNamespace.XHTML, "content");
 		if (attr != null) {
 			return String.valueOf(attr.getValue());
 		}
@@ -125,23 +140,32 @@ public class TextMetaElement extends OdfElement {
 	}
 
 	/**
-	 * Sets the value of ODFDOM attribute representation <code>XhtmlContentAttribute</code> , See {@odf.attribute xhtml:content}
-	 *
-	 * @param xhtmlContentValue   The type is <code>String</code>
+	 * Sets the value of ODFDOM attribute representation
+	 * <code>XhtmlContentAttribute</code> , See {@odf.attribute
+	 * xhtml:content}
+	 * 
+	 * @param xhtmlContentValue
+	 *            The type is <code>String</code>
 	 */
 	public void setXhtmlContentAttribute(String xhtmlContentValue) {
-		XhtmlContentAttribute attr = new XhtmlContentAttribute((OdfFileDom) this.ownerDocument);
+		XhtmlContentAttribute attr = new XhtmlContentAttribute(
+				(OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xhtmlContentValue);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 
 	/**
-	 * Receives the value of the ODFDOM attribute representation <code>XhtmlDatatypeAttribute</code> , See {@odf.attribute xhtml:datatype}
-	 *
-	 * @return - the <code>String</code> , the value or <code>null</code>, if the attribute is not set and no default value defined.
+	 * Receives the value of the ODFDOM attribute representation
+	 * <code>XhtmlDatatypeAttribute</code> , See {@odf.attribute
+	 *  xhtml:datatype}
+	 * 
+	 * @return - the <code>String</code> , the value or <code>null</code>, if
+	 *         the attribute is not set and no default value defined.
 	 */
 	public String getXhtmlDatatypeAttribute() {
-		XhtmlDatatypeAttribute attr = (XhtmlDatatypeAttribute) getOdfAttribute(OdfDocumentNamespace.XHTML, "datatype");
+		XhtmlDatatypeAttribute attr = (XhtmlDatatypeAttribute) getOdfAttribute(
+				OdfDocumentNamespace.XHTML, "datatype");
 		if (attr != null) {
 			return String.valueOf(attr.getValue());
 		}
@@ -149,23 +173,32 @@ public class TextMetaElement extends OdfElement {
 	}
 
 	/**
-	 * Sets the value of ODFDOM attribute representation <code>XhtmlDatatypeAttribute</code> , See {@odf.attribute xhtml:datatype}
-	 *
-	 * @param xhtmlDatatypeValue   The type is <code>String</code>
+	 * Sets the value of ODFDOM attribute representation
+	 * <code>XhtmlDatatypeAttribute</code> , See {@odf.attribute
+	 *  xhtml:datatype}
+	 * 
+	 * @param xhtmlDatatypeValue
+	 *            The type is <code>String</code>
 	 */
 	public void setXhtmlDatatypeAttribute(String xhtmlDatatypeValue) {
-		XhtmlDatatypeAttribute attr = new XhtmlDatatypeAttribute((OdfFileDom) this.ownerDocument);
+		XhtmlDatatypeAttribute attr = new XhtmlDatatypeAttribute(
+				(OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xhtmlDatatypeValue);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 
 	/**
-	 * Receives the value of the ODFDOM attribute representation <code>XhtmlPropertyAttribute</code> , See {@odf.attribute xhtml:property}
-	 *
-	 * @return - the <code>String</code> , the value or <code>null</code>, if the attribute is not set and no default value defined.
+	 * Receives the value of the ODFDOM attribute representation
+	 * <code>XhtmlPropertyAttribute</code> , See {@odf.attribute
+	 *  xhtml:property}
+	 * 
+	 * @return - the <code>String</code> , the value or <code>null</code>, if
+	 *         the attribute is not set and no default value defined.
 	 */
 	public String getXhtmlPropertyAttribute() {
-		XhtmlPropertyAttribute attr = (XhtmlPropertyAttribute) getOdfAttribute(OdfDocumentNamespace.XHTML, "property");
+		XhtmlPropertyAttribute attr = (XhtmlPropertyAttribute) getOdfAttribute(
+				OdfDocumentNamespace.XHTML, "property");
 		if (attr != null) {
 			return String.valueOf(attr.getValue());
 		}
@@ -173,23 +206,31 @@ public class TextMetaElement extends OdfElement {
 	}
 
 	/**
-	 * Sets the value of ODFDOM attribute representation <code>XhtmlPropertyAttribute</code> , See {@odf.attribute xhtml:property}
-	 *
-	 * @param xhtmlPropertyValue   The type is <code>String</code>
+	 * Sets the value of ODFDOM attribute representation
+	 * <code>XhtmlPropertyAttribute</code> , See {@odf.attribute
+	 *  xhtml:property}
+	 * 
+	 * @param xhtmlPropertyValue
+	 *            The type is <code>String</code>
 	 */
 	public void setXhtmlPropertyAttribute(String xhtmlPropertyValue) {
-		XhtmlPropertyAttribute attr = new XhtmlPropertyAttribute((OdfFileDom) this.ownerDocument);
+		XhtmlPropertyAttribute attr = new XhtmlPropertyAttribute(
+				(OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xhtmlPropertyValue);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 
 	/**
-	 * Receives the value of the ODFDOM attribute representation <code>XmlIdAttribute</code> , See {@odf.attribute xml:id}
-	 *
-	 * @return - the <code>String</code> , the value or <code>null</code>, if the attribute is not set and no default value defined.
+	 * Receives the value of the ODFDOM attribute representation
+	 * <code>XmlIdAttribute</code> , See {@odf.attribute xml:id}
+	 * 
+	 * @return - the <code>String</code> , the value or <code>null</code>, if
+	 *         the attribute is not set and no default value defined.
 	 */
 	public String getXmlIdAttribute() {
-		XmlIdAttribute attr = (XmlIdAttribute) getOdfAttribute(OdfDocumentNamespace.XML, "id");
+		XmlIdAttribute attr = (XmlIdAttribute) getOdfAttribute(
+				OdfDocumentNamespace.XML, "id");
 		if (attr != null) {
 			return String.valueOf(attr.getValue());
 		}
@@ -197,40 +238,52 @@ public class TextMetaElement extends OdfElement {
 	}
 
 	/**
-	 * Sets the value of ODFDOM attribute representation <code>XmlIdAttribute</code> , See {@odf.attribute xml:id}
-	 *
-	 * @param xmlIdValue   The type is <code>String</code>
+	 * Sets the value of ODFDOM attribute representation
+	 * <code>XmlIdAttribute</code> , See {@odf.attribute xml:id}
+	 * 
+	 * @param xmlIdValue
+	 *            The type is <code>String</code>
 	 */
 	public void setXmlIdAttribute(String xmlIdValue) {
-		XmlIdAttribute attr = new XmlIdAttribute((OdfFileDom) this.ownerDocument);
+		XmlIdAttribute attr = new XmlIdAttribute(
+				(OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xmlIdValue);
 	}
 
 	/**
 	 * Create child element {@odf.element dr3d:scene}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element dr3d:scene}
 	 */
 	public Dr3dSceneElement newDr3dSceneElement() {
-		Dr3dSceneElement dr3dScene = ((OdfFileDom) this.ownerDocument).newOdfElement(Dr3dSceneElement.class);
+		Dr3dSceneElement dr3dScene = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(Dr3dSceneElement.class);
 		this.appendChild(dr3dScene);
 		return dr3dScene;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:a}.
-	 *
-	 * @param xlinkHrefValue  the <code>String</code> value of <code>XlinkHrefAttribute</code>, see {@odf.attribute  xlink:href} at specification
-	 * @param xlinkTypeValue  the <code>String</code> value of <code>XlinkTypeAttribute</code>, see {@odf.attribute  xlink:type} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param xlinkHrefValue
+	 *            the <code>String</code> value of
+	 *            <code>XlinkHrefAttribute</code>, see            {@odf.attribute
+	 *  xlink:href} at specification
+	 * @param xlinkTypeValue
+	 *            the <code>String</code> value of
+	 *            <code>XlinkTypeAttribute</code>, see            {@odf.attribute
+	 *  xlink:type} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:a}
 	 */
-	 public DrawAElement newDrawAElement(String xlinkHrefValue, String xlinkTypeValue) {
-		DrawAElement drawA = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawAElement.class);
+	public DrawAElement newDrawAElement(String xlinkHrefValue,
+			String xlinkTypeValue) {
+		DrawAElement drawA = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawAElement.class);
 		drawA.setXlinkHrefAttribute(xlinkHrefValue);
 		drawA.setXlinkTypeAttribute(xlinkTypeValue);
 		this.appendChild(drawA);
@@ -239,40 +292,46 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element draw:caption}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element draw:caption}
 	 */
 	public DrawCaptionElement newDrawCaptionElement() {
-		DrawCaptionElement drawCaption = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawCaptionElement.class);
+		DrawCaptionElement drawCaption = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawCaptionElement.class);
 		this.appendChild(drawCaption);
 		return drawCaption;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:circle}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element draw:circle}
 	 */
 	public DrawCircleElement newDrawCircleElement() {
-		DrawCircleElement drawCircle = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawCircleElement.class);
+		DrawCircleElement drawCircle = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawCircleElement.class);
 		this.appendChild(drawCircle);
 		return drawCircle;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:connector}.
-	 *
-	 * @param svgViewBoxValue  the <code>Integer</code> value of <code>SvgViewBoxAttribute</code>, see {@odf.attribute  svg:viewBox} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param svgViewBoxValue
+	 *            the <code>Integer</code> value of
+	 *            <code>SvgViewBoxAttribute</code>, see            {@odf.attribute
+	 *  svg:viewBox} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:connector}
 	 */
-	 public DrawConnectorElement newDrawConnectorElement(int svgViewBoxValue) {
-		DrawConnectorElement drawConnector = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawConnectorElement.class);
+	public DrawConnectorElement newDrawConnectorElement(int svgViewBoxValue) {
+		DrawConnectorElement drawConnector = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawConnectorElement.class);
 		drawConnector.setSvgViewBoxAttribute(svgViewBoxValue);
 		this.appendChild(drawConnector);
 		return drawConnector;
@@ -280,14 +339,18 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element draw:control}.
-	 *
-	 * @param drawControlValue  the <code>String</code> value of <code>DrawControlAttribute</code>, see {@odf.attribute  draw:control} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param drawControlValue
+	 *            the <code>String</code> value of
+	 *            <code>DrawControlAttribute</code>, see            {@odf.attribute
+	 *  draw:control} at specification Child element
+	 *            is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:control}
 	 */
-	 public DrawControlElement newDrawControlElement(String drawControlValue) {
-		DrawControlElement drawControl = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawControlElement.class);
+	public DrawControlElement newDrawControlElement(String drawControlValue) {
+		DrawControlElement drawControl = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawControlElement.class);
 		drawControl.setDrawControlAttribute(drawControlValue);
 		this.appendChild(drawControl);
 		return drawControl;
@@ -295,69 +358,83 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element draw:custom-shape}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element draw:custom-shape}
 	 */
 	public DrawCustomShapeElement newDrawCustomShapeElement() {
-		DrawCustomShapeElement drawCustomShape = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawCustomShapeElement.class);
+		DrawCustomShapeElement drawCustomShape = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawCustomShapeElement.class);
 		this.appendChild(drawCustomShape);
 		return drawCustomShape;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:ellipse}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element draw:ellipse}
 	 */
 	public DrawEllipseElement newDrawEllipseElement() {
-		DrawEllipseElement drawEllipse = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawEllipseElement.class);
+		DrawEllipseElement drawEllipse = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawEllipseElement.class);
 		this.appendChild(drawEllipse);
 		return drawEllipse;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:frame}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element draw:frame}
 	 */
 	public DrawFrameElement newDrawFrameElement() {
-		DrawFrameElement drawFrame = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawFrameElement.class);
+		DrawFrameElement drawFrame = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawFrameElement.class);
 		this.appendChild(drawFrame);
 		return drawFrame;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:g}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element draw:g}
 	 */
 	public DrawGElement newDrawGElement() {
-		DrawGElement drawG = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawGElement.class);
+		DrawGElement drawG = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawGElement.class);
 		this.appendChild(drawG);
 		return drawG;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:line}.
-	 *
-	 * @param svgX1Value  the <code>String</code> value of <code>SvgX1Attribute</code>, see {@odf.attribute  svg:x1} at specification
-	 * @param svgX2Value  the <code>String</code> value of <code>SvgX2Attribute</code>, see {@odf.attribute  svg:x2} at specification
-	 * @param svgY1Value  the <code>String</code> value of <code>SvgY1Attribute</code>, see {@odf.attribute  svg:y1} at specification
-	 * @param svgY2Value  the <code>String</code> value of <code>SvgY2Attribute</code>, see {@odf.attribute  svg:y2} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param svgX1Value
+	 *            the <code>String</code> value of <code>SvgX1Attribute</code>,
+	 *            see {@odf.attribute svg:x1} at specification
+	 * @param svgX2Value
+	 *            the <code>String</code> value of <code>SvgX2Attribute</code>,
+	 *            see {@odf.attribute svg:x2} at specification
+	 * @param svgY1Value
+	 *            the <code>String</code> value of <code>SvgY1Attribute</code>,
+	 *            see {@odf.attribute svg:y1} at specification
+	 * @param svgY2Value
+	 *            the <code>String</code> value of <code>SvgY2Attribute</code>,
+	 *            see {@odf.attribute svg:y2} at specification
+	 *            Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:line}
 	 */
-	 public DrawLineElement newDrawLineElement(String svgX1Value, String svgX2Value, String svgY1Value, String svgY2Value) {
-		DrawLineElement drawLine = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawLineElement.class);
+	public DrawLineElement newDrawLineElement(String svgX1Value,
+			String svgX2Value, String svgY1Value, String svgY2Value) {
+		DrawLineElement drawLine = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawLineElement.class);
 		drawLine.setSvgX1Attribute(svgX1Value);
 		drawLine.setSvgX2Attribute(svgX2Value);
 		drawLine.setSvgY1Attribute(svgY1Value);
@@ -368,17 +445,27 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element draw:measure}.
-	 *
-	 * @param svgX1Value  the <code>String</code> value of <code>SvgX1Attribute</code>, see {@odf.attribute  svg:x1} at specification
-	 * @param svgX2Value  the <code>String</code> value of <code>SvgX2Attribute</code>, see {@odf.attribute  svg:x2} at specification
-	 * @param svgY1Value  the <code>String</code> value of <code>SvgY1Attribute</code>, see {@odf.attribute  svg:y1} at specification
-	 * @param svgY2Value  the <code>String</code> value of <code>SvgY2Attribute</code>, see {@odf.attribute  svg:y2} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param svgX1Value
+	 *            the <code>String</code> value of <code>SvgX1Attribute</code>,
+	 *            see {@odf.attribute svg:x1} at specification
+	 * @param svgX2Value
+	 *            the <code>String</code> value of <code>SvgX2Attribute</code>,
+	 *            see {@odf.attribute svg:x2} at specification
+	 * @param svgY1Value
+	 *            the <code>String</code> value of <code>SvgY1Attribute</code>,
+	 *            see {@odf.attribute svg:y1} at specification
+	 * @param svgY2Value
+	 *            the <code>String</code> value of <code>SvgY2Attribute</code>,
+	 *            see {@odf.attribute svg:y2} at specification
+	 *            Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:measure}
 	 */
-	 public DrawMeasureElement newDrawMeasureElement(String svgX1Value, String svgX2Value, String svgY1Value, String svgY2Value) {
-		DrawMeasureElement drawMeasure = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawMeasureElement.class);
+	public DrawMeasureElement newDrawMeasureElement(String svgX1Value,
+			String svgX2Value, String svgY1Value, String svgY2Value) {
+		DrawMeasureElement drawMeasure = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawMeasureElement.class);
 		drawMeasure.setSvgX1Attribute(svgX1Value);
 		drawMeasure.setSvgX2Attribute(svgX2Value);
 		drawMeasure.setSvgY1Attribute(svgY1Value);
@@ -389,28 +476,36 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element draw:page-thumbnail}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element draw:page-thumbnail}
 	 */
 	public DrawPageThumbnailElement newDrawPageThumbnailElement() {
-		DrawPageThumbnailElement drawPageThumbnail = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawPageThumbnailElement.class);
+		DrawPageThumbnailElement drawPageThumbnail = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawPageThumbnailElement.class);
 		this.appendChild(drawPageThumbnail);
 		return drawPageThumbnail;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:path}.
-	 *
-	 * @param svgDValue  the <code>String</code> value of <code>SvgDAttribute</code>, see {@odf.attribute  svg:d} at specification
-	 * @param svgViewBoxValue  the <code>Integer</code> value of <code>SvgViewBoxAttribute</code>, see {@odf.attribute  svg:viewBox} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param svgDValue
+	 *            the <code>String</code> value of <code>SvgDAttribute</code>,
+	 *            see {@odf.attribute svg:d} at specification
+	 * @param svgViewBoxValue
+	 *            the <code>Integer</code> value of
+	 *            <code>SvgViewBoxAttribute</code>, see            {@odf.attribute
+	 *  svg:viewBox} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:path}
 	 */
-	 public DrawPathElement newDrawPathElement(String svgDValue, int svgViewBoxValue) {
-		DrawPathElement drawPath = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawPathElement.class);
+	public DrawPathElement newDrawPathElement(String svgDValue,
+			int svgViewBoxValue) {
+		DrawPathElement drawPath = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawPathElement.class);
 		drawPath.setSvgDAttribute(svgDValue);
 		drawPath.setSvgViewBoxAttribute(svgViewBoxValue);
 		this.appendChild(drawPath);
@@ -419,15 +514,23 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element draw:polygon}.
-	 *
-	 * @param drawPointsValue  the <code>String</code> value of <code>DrawPointsAttribute</code>, see {@odf.attribute  draw:points} at specification
-	 * @param svgViewBoxValue  the <code>Integer</code> value of <code>SvgViewBoxAttribute</code>, see {@odf.attribute  svg:viewBox} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param drawPointsValue
+	 *            the <code>String</code> value of
+	 *            <code>DrawPointsAttribute</code>, see            {@odf.attribute
+	 *  draw:points} at specification
+	 * @param svgViewBoxValue
+	 *            the <code>Integer</code> value of
+	 *            <code>SvgViewBoxAttribute</code>, see            {@odf.attribute
+	 *  svg:viewBox} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:polygon}
 	 */
-	 public DrawPolygonElement newDrawPolygonElement(String drawPointsValue, int svgViewBoxValue) {
-		DrawPolygonElement drawPolygon = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawPolygonElement.class);
+	public DrawPolygonElement newDrawPolygonElement(String drawPointsValue,
+			int svgViewBoxValue) {
+		DrawPolygonElement drawPolygon = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawPolygonElement.class);
 		drawPolygon.setDrawPointsAttribute(drawPointsValue);
 		drawPolygon.setSvgViewBoxAttribute(svgViewBoxValue);
 		this.appendChild(drawPolygon);
@@ -436,15 +539,23 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element draw:polyline}.
-	 *
-	 * @param drawPointsValue  the <code>String</code> value of <code>DrawPointsAttribute</code>, see {@odf.attribute  draw:points} at specification
-	 * @param svgViewBoxValue  the <code>Integer</code> value of <code>SvgViewBoxAttribute</code>, see {@odf.attribute  svg:viewBox} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param drawPointsValue
+	 *            the <code>String</code> value of
+	 *            <code>DrawPointsAttribute</code>, see            {@odf.attribute
+	 *  draw:points} at specification
+	 * @param svgViewBoxValue
+	 *            the <code>Integer</code> value of
+	 *            <code>SvgViewBoxAttribute</code>, see            {@odf.attribute
+	 *  svg:viewBox} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:polyline}
 	 */
-	 public DrawPolylineElement newDrawPolylineElement(String drawPointsValue, int svgViewBoxValue) {
-		DrawPolylineElement drawPolyline = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawPolylineElement.class);
+	public DrawPolylineElement newDrawPolylineElement(String drawPointsValue,
+			int svgViewBoxValue) {
+		DrawPolylineElement drawPolyline = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawPolylineElement.class);
 		drawPolyline.setDrawPointsAttribute(drawPointsValue);
 		drawPolyline.setSvgViewBoxAttribute(svgViewBoxValue);
 		this.appendChild(drawPolyline);
@@ -453,28 +564,37 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element draw:rect}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element draw:rect}
 	 */
 	public DrawRectElement newDrawRectElement() {
-		DrawRectElement drawRect = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawRectElement.class);
+		DrawRectElement drawRect = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawRectElement.class);
 		this.appendChild(drawRect);
 		return drawRect;
 	}
 
 	/**
 	 * Create child element {@odf.element draw:regular-polygon}.
-	 *
-	 * @param drawConcaveValue  the <code>Boolean</code> value of <code>DrawConcaveAttribute</code>, see {@odf.attribute  draw:concave} at specification
-	 * @param drawCornersValue  the <code>Integer</code> value of <code>DrawCornersAttribute</code>, see {@odf.attribute  draw:corners} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param drawConcaveValue
+	 *            the <code>Boolean</code> value of
+	 *            <code>DrawConcaveAttribute</code>, see            {@odf.attribute
+	 *  draw:concave} at specification
+	 * @param drawCornersValue
+	 *            the <code>Integer</code> value of
+	 *            <code>DrawCornersAttribute</code>, see            {@odf.attribute
+	 *  draw:corners} at specification Child element
+	 *            is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element draw:regular-polygon}
 	 */
-	 public DrawRegularPolygonElement newDrawRegularPolygonElement(boolean drawConcaveValue, int drawCornersValue) {
-		DrawRegularPolygonElement drawRegularPolygon = ((OdfFileDom) this.ownerDocument).newOdfElement(DrawRegularPolygonElement.class);
+	public DrawRegularPolygonElement newDrawRegularPolygonElement(
+			boolean drawConcaveValue, int drawCornersValue) {
+		DrawRegularPolygonElement drawRegularPolygon = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(DrawRegularPolygonElement.class);
 		drawRegularPolygon.setDrawConcaveAttribute(drawConcaveValue);
 		drawRegularPolygon.setDrawCornersAttribute(drawCornersValue);
 		this.appendChild(drawRegularPolygon);
@@ -483,27 +603,33 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element office:annotation}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element office:annotation}
 	 */
 	public OfficeAnnotationElement newOfficeAnnotationElement() {
-		OfficeAnnotationElement officeAnnotation = ((OdfFileDom) this.ownerDocument).newOdfElement(OfficeAnnotationElement.class);
+		OfficeAnnotationElement officeAnnotation = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(OfficeAnnotationElement.class);
 		this.appendChild(officeAnnotation);
 		return officeAnnotation;
 	}
 
 	/**
 	 * Create child element {@odf.element office:annotation-end}.
-	 *
-	 * @param officeNameValue  the <code>String</code> value of <code>OfficeNameAttribute</code>, see {@odf.attribute  office:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param officeNameValue
+	 *            the <code>String</code> value of
+	 *            <code>OfficeNameAttribute</code>, see            {@odf.attribute
+	 *  office:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element office:annotation-end}
 	 */
-	 public OfficeAnnotationEndElement newOfficeAnnotationEndElement(String officeNameValue) {
-		OfficeAnnotationEndElement officeAnnotationEnd = ((OdfFileDom) this.ownerDocument).newOdfElement(OfficeAnnotationEndElement.class);
+	public OfficeAnnotationEndElement newOfficeAnnotationEndElement(
+			String officeNameValue) {
+		OfficeAnnotationEndElement officeAnnotationEnd = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(OfficeAnnotationEndElement.class);
 		officeAnnotationEnd.setOfficeNameAttribute(officeNameValue);
 		this.appendChild(officeAnnotationEnd);
 		return officeAnnotationEnd;
@@ -511,54 +637,65 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element presentation:date-time}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element presentation:date-time}
 	 */
 	public PresentationDateTimeElement newPresentationDateTimeElement() {
-		PresentationDateTimeElement presentationDateTime = ((OdfFileDom) this.ownerDocument).newOdfElement(PresentationDateTimeElement.class);
+		PresentationDateTimeElement presentationDateTime = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(PresentationDateTimeElement.class);
 		this.appendChild(presentationDateTime);
 		return presentationDateTime;
 	}
 
 	/**
 	 * Create child element {@odf.element presentation:footer}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element presentation:footer}
 	 */
 	public PresentationFooterElement newPresentationFooterElement() {
-		PresentationFooterElement presentationFooter = ((OdfFileDom) this.ownerDocument).newOdfElement(PresentationFooterElement.class);
+		PresentationFooterElement presentationFooter = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(PresentationFooterElement.class);
 		this.appendChild(presentationFooter);
 		return presentationFooter;
 	}
 
 	/**
 	 * Create child element {@odf.element presentation:header}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element presentation:header}
 	 */
 	public PresentationHeaderElement newPresentationHeaderElement() {
-		PresentationHeaderElement presentationHeader = ((OdfFileDom) this.ownerDocument).newOdfElement(PresentationHeaderElement.class);
+		PresentationHeaderElement presentationHeader = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(PresentationHeaderElement.class);
 		this.appendChild(presentationHeader);
 		return presentationHeader;
 	}
 
 	/**
 	 * Create child element {@odf.element text:a}.
-	 *
-	 * @param xlinkHrefValue  the <code>String</code> value of <code>XlinkHrefAttribute</code>, see {@odf.attribute  xlink:href} at specification
-	 * @param xlinkTypeValue  the <code>String</code> value of <code>XlinkTypeAttribute</code>, see {@odf.attribute  xlink:type} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param xlinkHrefValue
+	 *            the <code>String</code> value of
+	 *            <code>XlinkHrefAttribute</code>, see            {@odf.attribute
+	 *  xlink:href} at specification
+	 * @param xlinkTypeValue
+	 *            the <code>String</code> value of
+	 *            <code>XlinkTypeAttribute</code>, see            {@odf.attribute
+	 *  xlink:type} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:a}
 	 */
-	 public TextAElement newTextAElement(String xlinkHrefValue, String xlinkTypeValue) {
-		TextAElement textA = ((OdfFileDom) this.ownerDocument).newOdfElement(TextAElement.class);
+	public TextAElement newTextAElement(String xlinkHrefValue,
+			String xlinkTypeValue) {
+		TextAElement textA = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextAElement.class);
 		textA.setXlinkHrefAttribute(xlinkHrefValue);
 		textA.setXlinkTypeAttribute(xlinkTypeValue);
 		this.appendChild(textA);
@@ -566,45 +703,65 @@ public class TextMetaElement extends OdfElement {
 	}
 
 	/**
-	 * Create child element {@odf.element text:alphabetical-index-mark}.
-	 *
-	 * @param textStringValueValue  the <code>String</code> value of <code>TextStringValueAttribute</code>, see {@odf.attribute  text:string-value} at specification
-	 * Child element is new in Odf 1.2
-	 *
-	 * @return the element {@odf.element text:alphabetical-index-mark}
+	 * Create child element {@odf.element
+	 * text:alphabetical-index-mark}.
+	 * 
+	 * @param textStringValueValue
+	 *            the <code>String</code> value of
+	 *            <code>TextStringValueAttribute</code>, see            {@odf.attribute
+	 *  text:string-value} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
+	 * @return the element {@odf.element
+	 *         text:alphabetical-index-mark}
 	 */
-	 public TextAlphabeticalIndexMarkElement newTextAlphabeticalIndexMarkElement(String textStringValueValue) {
-		TextAlphabeticalIndexMarkElement textAlphabeticalIndexMark = ((OdfFileDom) this.ownerDocument).newOdfElement(TextAlphabeticalIndexMarkElement.class);
-		textAlphabeticalIndexMark.setTextStringValueAttribute(textStringValueValue);
+	public TextAlphabeticalIndexMarkElement newTextAlphabeticalIndexMarkElement(
+			String textStringValueValue) {
+		TextAlphabeticalIndexMarkElement textAlphabeticalIndexMark = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextAlphabeticalIndexMarkElement.class);
+		textAlphabeticalIndexMark
+				.setTextStringValueAttribute(textStringValueValue);
 		this.appendChild(textAlphabeticalIndexMark);
 		return textAlphabeticalIndexMark;
 	}
 
 	/**
-	 * Create child element {@odf.element text:alphabetical-index-mark-end}.
-	 *
-	 * @param textIdValue  the <code>String</code> value of <code>TextIdAttribute</code>, see {@odf.attribute  text:id} at specification
-	 * Child element is new in Odf 1.2
-	 *
-	 * @return the element {@odf.element text:alphabetical-index-mark-end}
+	 * Create child element {@odf.element
+	 * text:alphabetical-index-mark-end}.
+	 * 
+	 * @param textIdValue
+	 *            the <code>String</code> value of <code>TextIdAttribute</code>,
+	 *            see {@odf.attribute text:id} at specification
+	 *            Child element is new in Odf 1.2
+	 * 
+	 * @return the element {@odf.element
+	 *         text:alphabetical-index-mark-end}
 	 */
-	 public TextAlphabeticalIndexMarkEndElement newTextAlphabeticalIndexMarkEndElement(String textIdValue) {
-		TextAlphabeticalIndexMarkEndElement textAlphabeticalIndexMarkEnd = ((OdfFileDom) this.ownerDocument).newOdfElement(TextAlphabeticalIndexMarkEndElement.class);
+	public TextAlphabeticalIndexMarkEndElement newTextAlphabeticalIndexMarkEndElement(
+			String textIdValue) {
+		TextAlphabeticalIndexMarkEndElement textAlphabeticalIndexMarkEnd = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextAlphabeticalIndexMarkEndElement.class);
 		textAlphabeticalIndexMarkEnd.setTextIdAttribute(textIdValue);
 		this.appendChild(textAlphabeticalIndexMarkEnd);
 		return textAlphabeticalIndexMarkEnd;
 	}
 
 	/**
-	 * Create child element {@odf.element text:alphabetical-index-mark-start}.
-	 *
-	 * @param textIdValue  the <code>String</code> value of <code>TextIdAttribute</code>, see {@odf.attribute  text:id} at specification
-	 * Child element is new in Odf 1.2
-	 *
-	 * @return the element {@odf.element text:alphabetical-index-mark-start}
+	 * Create child element {@odf.element
+	 * text:alphabetical-index-mark-start}.
+	 * 
+	 * @param textIdValue
+	 *            the <code>String</code> value of <code>TextIdAttribute</code>,
+	 *            see {@odf.attribute text:id} at specification
+	 *            Child element is new in Odf 1.2
+	 * 
+	 * @return the element {@odf.element
+	 *         text:alphabetical-index-mark-start}
 	 */
-	 public TextAlphabeticalIndexMarkStartElement newTextAlphabeticalIndexMarkStartElement(String textIdValue) {
-		TextAlphabeticalIndexMarkStartElement textAlphabeticalIndexMarkStart = ((OdfFileDom) this.ownerDocument).newOdfElement(TextAlphabeticalIndexMarkStartElement.class);
+	public TextAlphabeticalIndexMarkStartElement newTextAlphabeticalIndexMarkStartElement(
+			String textIdValue) {
+		TextAlphabeticalIndexMarkStartElement textAlphabeticalIndexMarkStart = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextAlphabeticalIndexMarkStartElement.class);
 		textAlphabeticalIndexMarkStart.setTextIdAttribute(textIdValue);
 		this.appendChild(textAlphabeticalIndexMarkStart);
 		return textAlphabeticalIndexMarkStart;
@@ -612,55 +769,67 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:author-initials}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:author-initials}
 	 */
 	public TextAuthorInitialsElement newTextAuthorInitialsElement() {
-		TextAuthorInitialsElement textAuthorInitials = ((OdfFileDom) this.ownerDocument).newOdfElement(TextAuthorInitialsElement.class);
+		TextAuthorInitialsElement textAuthorInitials = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextAuthorInitialsElement.class);
 		this.appendChild(textAuthorInitials);
 		return textAuthorInitials;
 	}
 
 	/**
 	 * Create child element {@odf.element text:author-name}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:author-name}
 	 */
 	public TextAuthorNameElement newTextAuthorNameElement() {
-		TextAuthorNameElement textAuthorName = ((OdfFileDom) this.ownerDocument).newOdfElement(TextAuthorNameElement.class);
+		TextAuthorNameElement textAuthorName = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextAuthorNameElement.class);
 		this.appendChild(textAuthorName);
 		return textAuthorName;
 	}
 
 	/**
 	 * Create child element {@odf.element text:bibliography-mark}.
-	 *
-	 * @param textBibliographyTypeValue  the <code>String</code> value of <code>TextBibliographyTypeAttribute</code>, see {@odf.attribute  text:bibliography-type} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textBibliographyTypeValue
+	 *            the <code>String</code> value of
+	 *            <code>TextBibliographyTypeAttribute</code>, see
+	 *            {@odf.attribute text:bibliography-type} at
+	 *            specification Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:bibliography-mark}
 	 */
-	 public TextBibliographyMarkElement newTextBibliographyMarkElement(String textBibliographyTypeValue) {
-		TextBibliographyMarkElement textBibliographyMark = ((OdfFileDom) this.ownerDocument).newOdfElement(TextBibliographyMarkElement.class);
-		textBibliographyMark.setTextBibliographyTypeAttribute(textBibliographyTypeValue);
+	public TextBibliographyMarkElement newTextBibliographyMarkElement(
+			String textBibliographyTypeValue) {
+		TextBibliographyMarkElement textBibliographyMark = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextBibliographyMarkElement.class);
+		textBibliographyMark
+				.setTextBibliographyTypeAttribute(textBibliographyTypeValue);
 		this.appendChild(textBibliographyMark);
 		return textBibliographyMark;
 	}
 
 	/**
 	 * Create child element {@odf.element text:bookmark}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:bookmark}
 	 */
-	 public TextBookmarkElement newTextBookmarkElement(String textNameValue) {
-		TextBookmarkElement textBookmark = ((OdfFileDom) this.ownerDocument).newOdfElement(TextBookmarkElement.class);
+	public TextBookmarkElement newTextBookmarkElement(String textNameValue) {
+		TextBookmarkElement textBookmark = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextBookmarkElement.class);
 		textBookmark.setTextNameAttribute(textNameValue);
 		this.appendChild(textBookmark);
 		return textBookmark;
@@ -668,14 +837,18 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:bookmark-end}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:bookmark-end}
 	 */
-	 public TextBookmarkEndElement newTextBookmarkEndElement(String textNameValue) {
-		TextBookmarkEndElement textBookmarkEnd = ((OdfFileDom) this.ownerDocument).newOdfElement(TextBookmarkEndElement.class);
+	public TextBookmarkEndElement newTextBookmarkEndElement(String textNameValue) {
+		TextBookmarkEndElement textBookmarkEnd = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextBookmarkEndElement.class);
 		textBookmarkEnd.setTextNameAttribute(textNameValue);
 		this.appendChild(textBookmarkEnd);
 		return textBookmarkEnd;
@@ -683,27 +856,33 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:bookmark-ref}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:bookmark-ref}
 	 */
 	public TextBookmarkRefElement newTextBookmarkRefElement() {
-		TextBookmarkRefElement textBookmarkRef = ((OdfFileDom) this.ownerDocument).newOdfElement(TextBookmarkRefElement.class);
+		TextBookmarkRefElement textBookmarkRef = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextBookmarkRefElement.class);
 		this.appendChild(textBookmarkRef);
 		return textBookmarkRef;
 	}
 
 	/**
 	 * Create child element {@odf.element text:bookmark-start}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:bookmark-start}
 	 */
-	 public TextBookmarkStartElement newTextBookmarkStartElement(String textNameValue) {
-		TextBookmarkStartElement textBookmarkStart = ((OdfFileDom) this.ownerDocument).newOdfElement(TextBookmarkStartElement.class);
+	public TextBookmarkStartElement newTextBookmarkStartElement(
+			String textNameValue) {
+		TextBookmarkStartElement textBookmarkStart = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextBookmarkStartElement.class);
 		textBookmarkStart.setTextNameAttribute(textNameValue);
 		this.appendChild(textBookmarkStart);
 		return textBookmarkStart;
@@ -711,14 +890,18 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:change}.
-	 *
-	 * @param textChangeIdValue  the <code>String</code> value of <code>TextChangeIdAttribute</code>, see {@odf.attribute  text:change-id} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textChangeIdValue
+	 *            the <code>String</code> value of
+	 *            <code>TextChangeIdAttribute</code>, see            {@odf.attribute
+	 *  text:change-id} at specification Child element
+	 *            is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:change}
 	 */
-	 public TextChangeElement newTextChangeElement(String textChangeIdValue) {
-		TextChangeElement textChange = ((OdfFileDom) this.ownerDocument).newOdfElement(TextChangeElement.class);
+	public TextChangeElement newTextChangeElement(String textChangeIdValue) {
+		TextChangeElement textChange = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextChangeElement.class);
 		textChange.setTextChangeIdAttribute(textChangeIdValue);
 		this.appendChild(textChange);
 		return textChange;
@@ -726,14 +909,18 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:change-end}.
-	 *
-	 * @param textChangeIdValue  the <code>String</code> value of <code>TextChangeIdAttribute</code>, see {@odf.attribute  text:change-id} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textChangeIdValue
+	 *            the <code>String</code> value of
+	 *            <code>TextChangeIdAttribute</code>, see            {@odf.attribute
+	 *  text:change-id} at specification Child element
+	 *            is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:change-end}
 	 */
-	 public TextChangeEndElement newTextChangeEndElement(String textChangeIdValue) {
-		TextChangeEndElement textChangeEnd = ((OdfFileDom) this.ownerDocument).newOdfElement(TextChangeEndElement.class);
+	public TextChangeEndElement newTextChangeEndElement(String textChangeIdValue) {
+		TextChangeEndElement textChangeEnd = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextChangeEndElement.class);
 		textChangeEnd.setTextChangeIdAttribute(textChangeIdValue);
 		this.appendChild(textChangeEnd);
 		return textChangeEnd;
@@ -741,14 +928,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:change-start}.
-	 *
-	 * @param textChangeIdValue  the <code>String</code> value of <code>TextChangeIdAttribute</code>, see {@odf.attribute  text:change-id} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textChangeIdValue
+	 *            the <code>String</code> value of
+	 *            <code>TextChangeIdAttribute</code>, see            {@odf.attribute
+	 *  text:change-id} at specification Child element
+	 *            is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:change-start}
 	 */
-	 public TextChangeStartElement newTextChangeStartElement(String textChangeIdValue) {
-		TextChangeStartElement textChangeStart = ((OdfFileDom) this.ownerDocument).newOdfElement(TextChangeStartElement.class);
+	public TextChangeStartElement newTextChangeStartElement(
+			String textChangeIdValue) {
+		TextChangeStartElement textChangeStart = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextChangeStartElement.class);
 		textChangeStart.setTextChangeIdAttribute(textChangeIdValue);
 		this.appendChild(textChangeStart);
 		return textChangeStart;
@@ -756,15 +948,23 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:chapter}.
-	 *
-	 * @param textDisplayValue  the <code>String</code> value of <code>TextDisplayAttribute</code>, see {@odf.attribute  text:display} at specification
-	 * @param textOutlineLevelValue  the <code>Integer</code> value of <code>TextOutlineLevelAttribute</code>, see {@odf.attribute  text:outline-level} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textDisplayValue
+	 *            the <code>String</code> value of
+	 *            <code>TextDisplayAttribute</code>, see            {@odf.attribute
+	 *  text:display} at specification
+	 * @param textOutlineLevelValue
+	 *            the <code>Integer</code> value of
+	 *            <code>TextOutlineLevelAttribute</code>, see            {@odf.attribute
+	 *  text:outline-level} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:chapter}
 	 */
-	 public TextChapterElement newTextChapterElement(String textDisplayValue, int textOutlineLevelValue) {
-		TextChapterElement textChapter = ((OdfFileDom) this.ownerDocument).newOdfElement(TextChapterElement.class);
+	public TextChapterElement newTextChapterElement(String textDisplayValue,
+			int textOutlineLevelValue) {
+		TextChapterElement textChapter = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextChapterElement.class);
 		textChapter.setTextDisplayAttribute(textDisplayValue);
 		textChapter.setTextOutlineLevelAttribute(textOutlineLevelValue);
 		this.appendChild(textChapter);
@@ -773,14 +973,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:character-count}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:character-count}
 	 */
-	 public TextCharacterCountElement newTextCharacterCountElement(String styleNumFormatValue) {
-		TextCharacterCountElement textCharacterCount = ((OdfFileDom) this.ownerDocument).newOdfElement(TextCharacterCountElement.class);
+	public TextCharacterCountElement newTextCharacterCountElement(
+			String styleNumFormatValue) {
+		TextCharacterCountElement textCharacterCount = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextCharacterCountElement.class);
 		textCharacterCount.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textCharacterCount);
 		return textCharacterCount;
@@ -788,73 +993,99 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:conditional-text}.
-	 *
-	 * @param textConditionValue  the <code>String</code> value of <code>TextConditionAttribute</code>, see {@odf.attribute  text:condition} at specification
-	 * @param textStringValueIfFalseValue  the <code>String</code> value of <code>TextStringValueIfFalseAttribute</code>, see {@odf.attribute  text:string-value-if-false} at specification
-	 * @param textStringValueIfTrueValue  the <code>String</code> value of <code>TextStringValueIfTrueAttribute</code>, see {@odf.attribute  text:string-value-if-true} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textConditionValue
+	 *            the <code>String</code> value of
+	 *            <code>TextConditionAttribute</code>, see            {@odf.attribute
+	 *  text:condition} at specification
+	 * @param textStringValueIfFalseValue
+	 *            the <code>String</code> value of
+	 *            <code>TextStringValueIfFalseAttribute</code>, see
+	 *            {@odf.attribute text:string-value-if-false} at
+	 *            specification
+	 * @param textStringValueIfTrueValue
+	 *            the <code>String</code> value of
+	 *            <code>TextStringValueIfTrueAttribute</code>, see
+	 *            {@odf.attribute text:string-value-if-true} at
+	 *            specification Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:conditional-text}
 	 */
-	 public TextConditionalTextElement newTextConditionalTextElement(String textConditionValue, String textStringValueIfFalseValue, String textStringValueIfTrueValue) {
-		TextConditionalTextElement textConditionalText = ((OdfFileDom) this.ownerDocument).newOdfElement(TextConditionalTextElement.class);
+	public TextConditionalTextElement newTextConditionalTextElement(
+			String textConditionValue, String textStringValueIfFalseValue,
+			String textStringValueIfTrueValue) {
+		TextConditionalTextElement textConditionalText = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextConditionalTextElement.class);
 		textConditionalText.setTextConditionAttribute(textConditionValue);
-		textConditionalText.setTextStringValueIfFalseAttribute(textStringValueIfFalseValue);
-		textConditionalText.setTextStringValueIfTrueAttribute(textStringValueIfTrueValue);
+		textConditionalText
+				.setTextStringValueIfFalseAttribute(textStringValueIfFalseValue);
+		textConditionalText
+				.setTextStringValueIfTrueAttribute(textStringValueIfTrueValue);
 		this.appendChild(textConditionalText);
 		return textConditionalText;
 	}
 
 	/**
 	 * Create child element {@odf.element text:creation-date}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:creation-date}
 	 */
 	public TextCreationDateElement newTextCreationDateElement() {
-		TextCreationDateElement textCreationDate = ((OdfFileDom) this.ownerDocument).newOdfElement(TextCreationDateElement.class);
+		TextCreationDateElement textCreationDate = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextCreationDateElement.class);
 		this.appendChild(textCreationDate);
 		return textCreationDate;
 	}
 
 	/**
 	 * Create child element {@odf.element text:creation-time}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:creation-time}
 	 */
 	public TextCreationTimeElement newTextCreationTimeElement() {
-		TextCreationTimeElement textCreationTime = ((OdfFileDom) this.ownerDocument).newOdfElement(TextCreationTimeElement.class);
+		TextCreationTimeElement textCreationTime = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextCreationTimeElement.class);
 		this.appendChild(textCreationTime);
 		return textCreationTime;
 	}
 
 	/**
 	 * Create child element {@odf.element text:creator}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:creator}
 	 */
 	public TextCreatorElement newTextCreatorElement() {
-		TextCreatorElement textCreator = ((OdfFileDom) this.ownerDocument).newOdfElement(TextCreatorElement.class);
+		TextCreatorElement textCreator = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextCreatorElement.class);
 		this.appendChild(textCreator);
 		return textCreator;
 	}
 
 	/**
 	 * Create child element {@odf.element text:database-display}.
-	 *
-	 * @param textColumnNameValue  the <code>String</code> value of <code>TextColumnNameAttribute</code>, see {@odf.attribute  text:column-name} at specification
-	 * @param textTableNameValue  the <code>String</code> value of <code>TextTableNameAttribute</code>, see {@odf.attribute  text:table-name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textColumnNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextColumnNameAttribute</code>, see            {@odf.attribute
+	 *  text:column-name} at specification
+	 * @param textTableNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextTableNameAttribute</code>, see            {@odf.attribute
+	 *  text:table-name} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:database-display}
 	 */
-	 public TextDatabaseDisplayElement newTextDatabaseDisplayElement(String textColumnNameValue, String textTableNameValue) {
-		TextDatabaseDisplayElement textDatabaseDisplay = ((OdfFileDom) this.ownerDocument).newOdfElement(TextDatabaseDisplayElement.class);
+	public TextDatabaseDisplayElement newTextDatabaseDisplayElement(
+			String textColumnNameValue, String textTableNameValue) {
+		TextDatabaseDisplayElement textDatabaseDisplay = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextDatabaseDisplayElement.class);
 		textDatabaseDisplay.setTextColumnNameAttribute(textColumnNameValue);
 		textDatabaseDisplay.setTextTableNameAttribute(textTableNameValue);
 		this.appendChild(textDatabaseDisplay);
@@ -863,14 +1094,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:database-name}.
-	 *
-	 * @param textTableNameValue  the <code>String</code> value of <code>TextTableNameAttribute</code>, see {@odf.attribute  text:table-name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textTableNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextTableNameAttribute</code>, see            {@odf.attribute
+	 *  text:table-name} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:database-name}
 	 */
-	 public TextDatabaseNameElement newTextDatabaseNameElement(String textTableNameValue) {
-		TextDatabaseNameElement textDatabaseName = ((OdfFileDom) this.ownerDocument).newOdfElement(TextDatabaseNameElement.class);
+	public TextDatabaseNameElement newTextDatabaseNameElement(
+			String textTableNameValue) {
+		TextDatabaseNameElement textDatabaseName = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextDatabaseNameElement.class);
 		textDatabaseName.setTextTableNameAttribute(textTableNameValue);
 		this.appendChild(textDatabaseName);
 		return textDatabaseName;
@@ -878,30 +1114,44 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:database-next}.
-	 *
-	 * @param textTableNameValue  the <code>String</code> value of <code>TextTableNameAttribute</code>, see {@odf.attribute  text:table-name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textTableNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextTableNameAttribute</code>, see            {@odf.attribute
+	 *  text:table-name} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:database-next}
 	 */
-	 public TextDatabaseNextElement newTextDatabaseNextElement(String textTableNameValue) {
-		TextDatabaseNextElement textDatabaseNext = ((OdfFileDom) this.ownerDocument).newOdfElement(TextDatabaseNextElement.class);
+	public TextDatabaseNextElement newTextDatabaseNextElement(
+			String textTableNameValue) {
+		TextDatabaseNextElement textDatabaseNext = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextDatabaseNextElement.class);
 		textDatabaseNext.setTextTableNameAttribute(textTableNameValue);
 		this.appendChild(textDatabaseNext);
 		return textDatabaseNext;
 	}
 
 	/**
-	 * Create child element {@odf.element text:database-row-number}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * @param textTableNameValue  the <code>String</code> value of <code>TextTableNameAttribute</code>, see {@odf.attribute  text:table-name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * Create child element {@odf.element
+	 * text:database-row-number}.
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification
+	 * @param textTableNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextTableNameAttribute</code>, see            {@odf.attribute
+	 *  text:table-name} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:database-row-number}
 	 */
-	 public TextDatabaseRowNumberElement newTextDatabaseRowNumberElement(String styleNumFormatValue, String textTableNameValue) {
-		TextDatabaseRowNumberElement textDatabaseRowNumber = ((OdfFileDom) this.ownerDocument).newOdfElement(TextDatabaseRowNumberElement.class);
+	public TextDatabaseRowNumberElement newTextDatabaseRowNumberElement(
+			String styleNumFormatValue, String textTableNameValue) {
+		TextDatabaseRowNumberElement textDatabaseRowNumber = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextDatabaseRowNumberElement.class);
 		textDatabaseRowNumber.setStyleNumFormatAttribute(styleNumFormatValue);
 		textDatabaseRowNumber.setTextTableNameAttribute(textTableNameValue);
 		this.appendChild(textDatabaseRowNumber);
@@ -909,15 +1159,21 @@ public class TextMetaElement extends OdfElement {
 	}
 
 	/**
-	 * Create child element {@odf.element text:database-row-select}.
-	 *
-	 * @param textTableNameValue  the <code>String</code> value of <code>TextTableNameAttribute</code>, see {@odf.attribute  text:table-name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * Create child element {@odf.element
+	 * text:database-row-select}.
+	 * 
+	 * @param textTableNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextTableNameAttribute</code>, see            {@odf.attribute
+	 *  text:table-name} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:database-row-select}
 	 */
-	 public TextDatabaseRowSelectElement newTextDatabaseRowSelectElement(String textTableNameValue) {
-		TextDatabaseRowSelectElement textDatabaseRowSelect = ((OdfFileDom) this.ownerDocument).newOdfElement(TextDatabaseRowSelectElement.class);
+	public TextDatabaseRowSelectElement newTextDatabaseRowSelectElement(
+			String textTableNameValue) {
+		TextDatabaseRowSelectElement textDatabaseRowSelect = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextDatabaseRowSelectElement.class);
 		textDatabaseRowSelect.setTextTableNameAttribute(textTableNameValue);
 		this.appendChild(textDatabaseRowSelect);
 		return textDatabaseRowSelect;
@@ -925,95 +1181,114 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:date}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:date}
 	 */
 	public TextDateElement newTextDateElement() {
-		TextDateElement textDate = ((OdfFileDom) this.ownerDocument).newOdfElement(TextDateElement.class);
+		TextDateElement textDate = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextDateElement.class);
 		this.appendChild(textDate);
 		return textDate;
 	}
 
 	/**
 	 * Create child element {@odf.element text:dde-connection}.
-	 *
-	 * @param textConnectionNameValue  the <code>String</code> value of <code>TextConnectionNameAttribute</code>, see {@odf.attribute  text:connection-name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textConnectionNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextConnectionNameAttribute</code>, see            {@odf.attribute
+	 *  text:connection-name} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:dde-connection}
 	 */
-	 public TextDdeConnectionElement newTextDdeConnectionElement(String textConnectionNameValue) {
-		TextDdeConnectionElement textDdeConnection = ((OdfFileDom) this.ownerDocument).newOdfElement(TextDdeConnectionElement.class);
-		textDdeConnection.setTextConnectionNameAttribute(textConnectionNameValue);
+	public TextDdeConnectionElement newTextDdeConnectionElement(
+			String textConnectionNameValue) {
+		TextDdeConnectionElement textDdeConnection = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextDdeConnectionElement.class);
+		textDdeConnection
+				.setTextConnectionNameAttribute(textConnectionNameValue);
 		this.appendChild(textDdeConnection);
 		return textDdeConnection;
 	}
 
 	/**
 	 * Create child element {@odf.element text:description}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:description}
 	 */
 	public TextDescriptionElement newTextDescriptionElement() {
-		TextDescriptionElement textDescription = ((OdfFileDom) this.ownerDocument).newOdfElement(TextDescriptionElement.class);
+		TextDescriptionElement textDescription = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextDescriptionElement.class);
 		this.appendChild(textDescription);
 		return textDescription;
 	}
 
 	/**
 	 * Create child element {@odf.element text:editing-cycles}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:editing-cycles}
 	 */
 	public TextEditingCyclesElement newTextEditingCyclesElement() {
-		TextEditingCyclesElement textEditingCycles = ((OdfFileDom) this.ownerDocument).newOdfElement(TextEditingCyclesElement.class);
+		TextEditingCyclesElement textEditingCycles = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextEditingCyclesElement.class);
 		this.appendChild(textEditingCycles);
 		return textEditingCycles;
 	}
 
 	/**
 	 * Create child element {@odf.element text:editing-duration}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:editing-duration}
 	 */
 	public TextEditingDurationElement newTextEditingDurationElement() {
-		TextEditingDurationElement textEditingDuration = ((OdfFileDom) this.ownerDocument).newOdfElement(TextEditingDurationElement.class);
+		TextEditingDurationElement textEditingDuration = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextEditingDurationElement.class);
 		this.appendChild(textEditingDuration);
 		return textEditingDuration;
 	}
 
 	/**
 	 * Create child element {@odf.element text:execute-macro}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:execute-macro}
 	 */
 	public TextExecuteMacroElement newTextExecuteMacroElement() {
-		TextExecuteMacroElement textExecuteMacro = ((OdfFileDom) this.ownerDocument).newOdfElement(TextExecuteMacroElement.class);
+		TextExecuteMacroElement textExecuteMacro = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextExecuteMacroElement.class);
 		this.appendChild(textExecuteMacro);
 		return textExecuteMacro;
 	}
 
 	/**
 	 * Create child element {@odf.element text:expression}.
-	 *
-	 * @param officeValueValue  the <code>Double</code> value of <code>OfficeValueAttribute</code>, see {@odf.attribute  office:value} at specification
-	 * @param officeValueTypeValue  the <code>String</code> value of <code>OfficeValueTypeAttribute</code>, see {@odf.attribute  office:value-type} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param officeValueValue
+	 *            the <code>Double</code> value of
+	 *            <code>OfficeValueAttribute</code>, see            {@odf.attribute
+	 *  office:value} at specification
+	 * @param officeValueTypeValue
+	 *            the <code>String</code> value of
+	 *            <code>OfficeValueTypeAttribute</code>, see            {@odf.attribute
+	 *  office:value-type} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:expression}
 	 */
-	 public TextExpressionElement newTextExpressionElement(double officeValueValue, String officeValueTypeValue) {
-		TextExpressionElement textExpression = ((OdfFileDom) this.ownerDocument).newOdfElement(TextExpressionElement.class);
+	public TextExpressionElement newTextExpressionElement(
+			double officeValueValue, String officeValueTypeValue) {
+		TextExpressionElement textExpression = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextExpressionElement.class);
 		textExpression.setOfficeValueAttribute(officeValueValue);
 		textExpression.setOfficeValueTypeAttribute(officeValueTypeValue);
 		this.appendChild(textExpression);
@@ -1022,27 +1297,33 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:file-name}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:file-name}
 	 */
 	public TextFileNameElement newTextFileNameElement() {
-		TextFileNameElement textFileName = ((OdfFileDom) this.ownerDocument).newOdfElement(TextFileNameElement.class);
+		TextFileNameElement textFileName = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextFileNameElement.class);
 		this.appendChild(textFileName);
 		return textFileName;
 	}
 
 	/**
 	 * Create child element {@odf.element text:hidden-paragraph}.
-	 *
-	 * @param textConditionValue  the <code>String</code> value of <code>TextConditionAttribute</code>, see {@odf.attribute  text:condition} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textConditionValue
+	 *            the <code>String</code> value of
+	 *            <code>TextConditionAttribute</code>, see            {@odf.attribute
+	 *  text:condition} at specification Child element
+	 *            is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:hidden-paragraph}
 	 */
-	 public TextHiddenParagraphElement newTextHiddenParagraphElement(String textConditionValue) {
-		TextHiddenParagraphElement textHiddenParagraph = ((OdfFileDom) this.ownerDocument).newOdfElement(TextHiddenParagraphElement.class);
+	public TextHiddenParagraphElement newTextHiddenParagraphElement(
+			String textConditionValue) {
+		TextHiddenParagraphElement textHiddenParagraph = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextHiddenParagraphElement.class);
 		textHiddenParagraph.setTextConditionAttribute(textConditionValue);
 		this.appendChild(textHiddenParagraph);
 		return textHiddenParagraph;
@@ -1050,15 +1331,23 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:hidden-text}.
-	 *
-	 * @param textConditionValue  the <code>String</code> value of <code>TextConditionAttribute</code>, see {@odf.attribute  text:condition} at specification
-	 * @param textStringValueValue  the <code>String</code> value of <code>TextStringValueAttribute</code>, see {@odf.attribute  text:string-value} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textConditionValue
+	 *            the <code>String</code> value of
+	 *            <code>TextConditionAttribute</code>, see            {@odf.attribute
+	 *  text:condition} at specification
+	 * @param textStringValueValue
+	 *            the <code>String</code> value of
+	 *            <code>TextStringValueAttribute</code>, see            {@odf.attribute
+	 *  text:string-value} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:hidden-text}
 	 */
-	 public TextHiddenTextElement newTextHiddenTextElement(String textConditionValue, String textStringValueValue) {
-		TextHiddenTextElement textHiddenText = ((OdfFileDom) this.ownerDocument).newOdfElement(TextHiddenTextElement.class);
+	public TextHiddenTextElement newTextHiddenTextElement(
+			String textConditionValue, String textStringValueValue) {
+		TextHiddenTextElement textHiddenText = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextHiddenTextElement.class);
 		textHiddenText.setTextConditionAttribute(textConditionValue);
 		textHiddenText.setTextStringValueAttribute(textStringValueValue);
 		this.appendChild(textHiddenText);
@@ -1067,14 +1356,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:image-count}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:image-count}
 	 */
-	 public TextImageCountElement newTextImageCountElement(String styleNumFormatValue) {
-		TextImageCountElement textImageCount = ((OdfFileDom) this.ownerDocument).newOdfElement(TextImageCountElement.class);
+	public TextImageCountElement newTextImageCountElement(
+			String styleNumFormatValue) {
+		TextImageCountElement textImageCount = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextImageCountElement.class);
 		textImageCount.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textImageCount);
 		return textImageCount;
@@ -1082,53 +1376,60 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:initial-creator}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:initial-creator}
 	 */
 	public TextInitialCreatorElement newTextInitialCreatorElement() {
-		TextInitialCreatorElement textInitialCreator = ((OdfFileDom) this.ownerDocument).newOdfElement(TextInitialCreatorElement.class);
+		TextInitialCreatorElement textInitialCreator = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextInitialCreatorElement.class);
 		this.appendChild(textInitialCreator);
 		return textInitialCreator;
 	}
 
 	/**
 	 * Create child element {@odf.element text:keywords}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:keywords}
 	 */
 	public TextKeywordsElement newTextKeywordsElement() {
-		TextKeywordsElement textKeywords = ((OdfFileDom) this.ownerDocument).newOdfElement(TextKeywordsElement.class);
+		TextKeywordsElement textKeywords = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextKeywordsElement.class);
 		this.appendChild(textKeywords);
 		return textKeywords;
 	}
 
 	/**
 	 * Create child element {@odf.element text:line-break}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:line-break}
 	 */
 	public TextLineBreakElement newTextLineBreakElement() {
-		TextLineBreakElement textLineBreak = ((OdfFileDom) this.ownerDocument).newOdfElement(TextLineBreakElement.class);
+		TextLineBreakElement textLineBreak = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextLineBreakElement.class);
 		this.appendChild(textLineBreak);
 		return textLineBreak;
 	}
 
 	/**
 	 * Create child element {@odf.element text:measure}.
-	 *
-	 * @param textKindValue  the <code>String</code> value of <code>TextKindAttribute</code>, see {@odf.attribute  text:kind} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textKindValue
+	 *            the <code>String</code> value of
+	 *            <code>TextKindAttribute</code>, see            {@odf.attribute
+	 *  text:kind} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:measure}
 	 */
-	 public TextMeasureElement newTextMeasureElement(String textKindValue) {
-		TextMeasureElement textMeasure = ((OdfFileDom) this.ownerDocument).newOdfElement(TextMeasureElement.class);
+	public TextMeasureElement newTextMeasureElement(String textKindValue) {
+		TextMeasureElement textMeasure = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextMeasureElement.class);
 		textMeasure.setTextKindAttribute(textKindValue);
 		this.appendChild(textMeasure);
 		return textMeasure;
@@ -1136,27 +1437,31 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:meta}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:meta}
 	 */
 	public TextMetaElement newTextMetaElement() {
-		TextMetaElement textMeta = ((OdfFileDom) this.ownerDocument).newOdfElement(TextMetaElement.class);
+		TextMetaElement textMeta = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextMetaElement.class);
 		this.appendChild(textMeta);
 		return textMeta;
 	}
 
 	/**
 	 * Create child element {@odf.element text:meta-field}.
-	 *
-	 * @param xmlIdValue  the <code>String</code> value of <code>XmlIdAttribute</code>, see {@odf.attribute  xml:id} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param xmlIdValue
+	 *            the <code>String</code> value of <code>XmlIdAttribute</code>,
+	 *            see {@odf.attribute xml:id} at specification
+	 *            Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:meta-field}
 	 */
-	 public TextMetaFieldElement newTextMetaFieldElement(String xmlIdValue) {
-		TextMetaFieldElement textMetaField = ((OdfFileDom) this.ownerDocument).newOdfElement(TextMetaFieldElement.class);
+	public TextMetaFieldElement newTextMetaFieldElement(String xmlIdValue) {
+		TextMetaFieldElement textMetaField = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextMetaFieldElement.class);
 		textMetaField.setXmlIdAttribute(xmlIdValue);
 		this.appendChild(textMetaField);
 		return textMetaField;
@@ -1164,40 +1469,46 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:modification-date}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:modification-date}
 	 */
 	public TextModificationDateElement newTextModificationDateElement() {
-		TextModificationDateElement textModificationDate = ((OdfFileDom) this.ownerDocument).newOdfElement(TextModificationDateElement.class);
+		TextModificationDateElement textModificationDate = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextModificationDateElement.class);
 		this.appendChild(textModificationDate);
 		return textModificationDate;
 	}
 
 	/**
 	 * Create child element {@odf.element text:modification-time}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:modification-time}
 	 */
 	public TextModificationTimeElement newTextModificationTimeElement() {
-		TextModificationTimeElement textModificationTime = ((OdfFileDom) this.ownerDocument).newOdfElement(TextModificationTimeElement.class);
+		TextModificationTimeElement textModificationTime = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextModificationTimeElement.class);
 		this.appendChild(textModificationTime);
 		return textModificationTime;
 	}
 
 	/**
 	 * Create child element {@odf.element text:note}.
-	 *
-	 * @param textNoteClassValue  the <code>String</code> value of <code>TextNoteClassAttribute</code>, see {@odf.attribute  text:note-class} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNoteClassValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNoteClassAttribute</code>, see            {@odf.attribute
+	 *  text:note-class} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:note}
 	 */
-	 public TextNoteElement newTextNoteElement(String textNoteClassValue) {
-		TextNoteElement textNote = ((OdfFileDom) this.ownerDocument).newOdfElement(TextNoteElement.class);
+	public TextNoteElement newTextNoteElement(String textNoteClassValue) {
+		TextNoteElement textNote = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextNoteElement.class);
 		textNote.setTextNoteClassAttribute(textNoteClassValue);
 		this.appendChild(textNote);
 		return textNote;
@@ -1205,14 +1516,18 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:note-ref}.
-	 *
-	 * @param textNoteClassValue  the <code>String</code> value of <code>TextNoteClassAttribute</code>, see {@odf.attribute  text:note-class} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNoteClassValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNoteClassAttribute</code>, see            {@odf.attribute
+	 *  text:note-class} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:note-ref}
 	 */
-	 public TextNoteRefElement newTextNoteRefElement(String textNoteClassValue) {
-		TextNoteRefElement textNoteRef = ((OdfFileDom) this.ownerDocument).newOdfElement(TextNoteRefElement.class);
+	public TextNoteRefElement newTextNoteRefElement(String textNoteClassValue) {
+		TextNoteRefElement textNoteRef = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextNoteRefElement.class);
 		textNoteRef.setTextNoteClassAttribute(textNoteClassValue);
 		this.appendChild(textNoteRef);
 		return textNoteRef;
@@ -1220,14 +1535,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:object-count}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:object-count}
 	 */
-	 public TextObjectCountElement newTextObjectCountElement(String styleNumFormatValue) {
-		TextObjectCountElement textObjectCount = ((OdfFileDom) this.ownerDocument).newOdfElement(TextObjectCountElement.class);
+	public TextObjectCountElement newTextObjectCountElement(
+			String styleNumFormatValue) {
+		TextObjectCountElement textObjectCount = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextObjectCountElement.class);
 		textObjectCount.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textObjectCount);
 		return textObjectCount;
@@ -1235,14 +1555,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:page-continuation}.
-	 *
-	 * @param textSelectPageValue  the <code>String</code> value of <code>TextSelectPageAttribute</code>, see {@odf.attribute  text:select-page} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textSelectPageValue
+	 *            the <code>String</code> value of
+	 *            <code>TextSelectPageAttribute</code>, see            {@odf.attribute
+	 *  text:select-page} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:page-continuation}
 	 */
-	 public TextPageContinuationElement newTextPageContinuationElement(String textSelectPageValue) {
-		TextPageContinuationElement textPageContinuation = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPageContinuationElement.class);
+	public TextPageContinuationElement newTextPageContinuationElement(
+			String textSelectPageValue) {
+		TextPageContinuationElement textPageContinuation = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPageContinuationElement.class);
 		textPageContinuation.setTextSelectPageAttribute(textSelectPageValue);
 		this.appendChild(textPageContinuation);
 		return textPageContinuation;
@@ -1250,14 +1575,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:page-count}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:page-count}
 	 */
-	 public TextPageCountElement newTextPageCountElement(String styleNumFormatValue) {
-		TextPageCountElement textPageCount = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPageCountElement.class);
+	public TextPageCountElement newTextPageCountElement(
+			String styleNumFormatValue) {
+		TextPageCountElement textPageCount = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPageCountElement.class);
 		textPageCount.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textPageCount);
 		return textPageCount;
@@ -1265,14 +1595,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:page-number}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:page-number}
 	 */
-	 public TextPageNumberElement newTextPageNumberElement(String styleNumFormatValue) {
-		TextPageNumberElement textPageNumber = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPageNumberElement.class);
+	public TextPageNumberElement newTextPageNumberElement(
+			String styleNumFormatValue) {
+		TextPageNumberElement textPageNumber = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPageNumberElement.class);
 		textPageNumber.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textPageNumber);
 		return textPageNumber;
@@ -1280,14 +1615,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:page-variable-get}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:page-variable-get}
 	 */
-	 public TextPageVariableGetElement newTextPageVariableGetElement(String styleNumFormatValue) {
-		TextPageVariableGetElement textPageVariableGet = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPageVariableGetElement.class);
+	public TextPageVariableGetElement newTextPageVariableGetElement(
+			String styleNumFormatValue) {
+		TextPageVariableGetElement textPageVariableGet = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPageVariableGetElement.class);
 		textPageVariableGet.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textPageVariableGet);
 		return textPageVariableGet;
@@ -1295,27 +1635,33 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:page-variable-set}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:page-variable-set}
 	 */
 	public TextPageVariableSetElement newTextPageVariableSetElement() {
-		TextPageVariableSetElement textPageVariableSet = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPageVariableSetElement.class);
+		TextPageVariableSetElement textPageVariableSet = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPageVariableSetElement.class);
 		this.appendChild(textPageVariableSet);
 		return textPageVariableSet;
 	}
 
 	/**
 	 * Create child element {@odf.element text:paragraph-count}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:paragraph-count}
 	 */
-	 public TextParagraphCountElement newTextParagraphCountElement(String styleNumFormatValue) {
-		TextParagraphCountElement textParagraphCount = ((OdfFileDom) this.ownerDocument).newOdfElement(TextParagraphCountElement.class);
+	public TextParagraphCountElement newTextParagraphCountElement(
+			String styleNumFormatValue) {
+		TextParagraphCountElement textParagraphCount = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextParagraphCountElement.class);
 		textParagraphCount.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textParagraphCount);
 		return textParagraphCount;
@@ -1323,98 +1669,125 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:placeholder}.
-	 *
-	 * @param textPlaceholderTypeValue  the <code>String</code> value of <code>TextPlaceholderTypeAttribute</code>, see {@odf.attribute  text:placeholder-type} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textPlaceholderTypeValue
+	 *            the <code>String</code> value of
+	 *            <code>TextPlaceholderTypeAttribute</code>, see
+	 *            {@odf.attribute text:placeholder-type} at
+	 *            specification Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:placeholder}
 	 */
-	 public TextPlaceholderElement newTextPlaceholderElement(String textPlaceholderTypeValue) {
-		TextPlaceholderElement textPlaceholder = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPlaceholderElement.class);
-		textPlaceholder.setTextPlaceholderTypeAttribute(textPlaceholderTypeValue);
+	public TextPlaceholderElement newTextPlaceholderElement(
+			String textPlaceholderTypeValue) {
+		TextPlaceholderElement textPlaceholder = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPlaceholderElement.class);
+		textPlaceholder
+				.setTextPlaceholderTypeAttribute(textPlaceholderTypeValue);
 		this.appendChild(textPlaceholder);
 		return textPlaceholder;
 	}
 
 	/**
 	 * Create child element {@odf.element text:print-date}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:print-date}
 	 */
 	public TextPrintDateElement newTextPrintDateElement() {
-		TextPrintDateElement textPrintDate = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPrintDateElement.class);
+		TextPrintDateElement textPrintDate = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPrintDateElement.class);
 		this.appendChild(textPrintDate);
 		return textPrintDate;
 	}
 
 	/**
 	 * Create child element {@odf.element text:print-time}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:print-time}
 	 */
 	public TextPrintTimeElement newTextPrintTimeElement() {
-		TextPrintTimeElement textPrintTime = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPrintTimeElement.class);
+		TextPrintTimeElement textPrintTime = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPrintTimeElement.class);
 		this.appendChild(textPrintTime);
 		return textPrintTime;
 	}
 
 	/**
 	 * Create child element {@odf.element text:printed-by}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:printed-by}
 	 */
 	public TextPrintedByElement newTextPrintedByElement() {
-		TextPrintedByElement textPrintedBy = ((OdfFileDom) this.ownerDocument).newOdfElement(TextPrintedByElement.class);
+		TextPrintedByElement textPrintedBy = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextPrintedByElement.class);
 		this.appendChild(textPrintedBy);
 		return textPrintedBy;
 	}
 
 	/**
 	 * Create child element {@odf.element text:reference-mark}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:reference-mark}
 	 */
-	 public TextReferenceMarkElement newTextReferenceMarkElement(String textNameValue) {
-		TextReferenceMarkElement textReferenceMark = ((OdfFileDom) this.ownerDocument).newOdfElement(TextReferenceMarkElement.class);
+	public TextReferenceMarkElement newTextReferenceMarkElement(
+			String textNameValue) {
+		TextReferenceMarkElement textReferenceMark = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextReferenceMarkElement.class);
 		textReferenceMark.setTextNameAttribute(textNameValue);
 		this.appendChild(textReferenceMark);
 		return textReferenceMark;
 	}
 
 	/**
-	 * Create child element {@odf.element text:reference-mark-end}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * Create child element {@odf.element text:reference-mark-end}
+	 * .
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:reference-mark-end}
 	 */
-	 public TextReferenceMarkEndElement newTextReferenceMarkEndElement(String textNameValue) {
-		TextReferenceMarkEndElement textReferenceMarkEnd = ((OdfFileDom) this.ownerDocument).newOdfElement(TextReferenceMarkEndElement.class);
+	public TextReferenceMarkEndElement newTextReferenceMarkEndElement(
+			String textNameValue) {
+		TextReferenceMarkEndElement textReferenceMarkEnd = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextReferenceMarkEndElement.class);
 		textReferenceMarkEnd.setTextNameAttribute(textNameValue);
 		this.appendChild(textReferenceMarkEnd);
 		return textReferenceMarkEnd;
 	}
 
 	/**
-	 * Create child element {@odf.element text:reference-mark-start}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
-	 * @return the element {@odf.element text:reference-mark-start}
+	 * Create child element {@odf.element
+	 * text:reference-mark-start}.
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
+	 * @return the element {@odf.element
+	 *         text:reference-mark-start}
 	 */
-	 public TextReferenceMarkStartElement newTextReferenceMarkStartElement(String textNameValue) {
-		TextReferenceMarkStartElement textReferenceMarkStart = ((OdfFileDom) this.ownerDocument).newOdfElement(TextReferenceMarkStartElement.class);
+	public TextReferenceMarkStartElement newTextReferenceMarkStartElement(
+			String textNameValue) {
+		TextReferenceMarkStartElement textReferenceMarkStart = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextReferenceMarkStartElement.class);
 		textReferenceMarkStart.setTextNameAttribute(textNameValue);
 		this.appendChild(textReferenceMarkStart);
 		return textReferenceMarkStart;
@@ -1422,262 +1795,294 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:reference-ref}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:reference-ref}
 	 */
 	public TextReferenceRefElement newTextReferenceRefElement() {
-		TextReferenceRefElement textReferenceRef = ((OdfFileDom) this.ownerDocument).newOdfElement(TextReferenceRefElement.class);
+		TextReferenceRefElement textReferenceRef = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextReferenceRefElement.class);
 		this.appendChild(textReferenceRef);
 		return textReferenceRef;
 	}
 
 	/**
 	 * Create child element {@odf.element text:ruby}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:ruby}
 	 */
 	public TextRubyElement newTextRubyElement() {
-		TextRubyElement textRuby = ((OdfFileDom) this.ownerDocument).newOdfElement(TextRubyElement.class);
+		TextRubyElement textRuby = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextRubyElement.class);
 		this.appendChild(textRuby);
 		return textRuby;
 	}
 
 	/**
 	 * Create child element {@odf.element text:s}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:s}
 	 */
 	public TextSElement newTextSElement() {
-		TextSElement textS = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSElement.class);
+		TextSElement textS = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSElement.class);
 		this.appendChild(textS);
 		return textS;
 	}
 
 	/**
 	 * Create child element {@odf.element text:script}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:script}
 	 */
 	public TextScriptElement newTextScriptElement() {
-		TextScriptElement textScript = ((OdfFileDom) this.ownerDocument).newOdfElement(TextScriptElement.class);
+		TextScriptElement textScript = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextScriptElement.class);
 		this.appendChild(textScript);
 		return textScript;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-city}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-city}
 	 */
 	public TextSenderCityElement newTextSenderCityElement() {
-		TextSenderCityElement textSenderCity = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderCityElement.class);
+		TextSenderCityElement textSenderCity = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderCityElement.class);
 		this.appendChild(textSenderCity);
 		return textSenderCity;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-company}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-company}
 	 */
 	public TextSenderCompanyElement newTextSenderCompanyElement() {
-		TextSenderCompanyElement textSenderCompany = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderCompanyElement.class);
+		TextSenderCompanyElement textSenderCompany = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderCompanyElement.class);
 		this.appendChild(textSenderCompany);
 		return textSenderCompany;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-country}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-country}
 	 */
 	public TextSenderCountryElement newTextSenderCountryElement() {
-		TextSenderCountryElement textSenderCountry = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderCountryElement.class);
+		TextSenderCountryElement textSenderCountry = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderCountryElement.class);
 		this.appendChild(textSenderCountry);
 		return textSenderCountry;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-email}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-email}
 	 */
 	public TextSenderEmailElement newTextSenderEmailElement() {
-		TextSenderEmailElement textSenderEmail = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderEmailElement.class);
+		TextSenderEmailElement textSenderEmail = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderEmailElement.class);
 		this.appendChild(textSenderEmail);
 		return textSenderEmail;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-fax}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-fax}
 	 */
 	public TextSenderFaxElement newTextSenderFaxElement() {
-		TextSenderFaxElement textSenderFax = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderFaxElement.class);
+		TextSenderFaxElement textSenderFax = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderFaxElement.class);
 		this.appendChild(textSenderFax);
 		return textSenderFax;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-firstname}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-firstname}
 	 */
 	public TextSenderFirstnameElement newTextSenderFirstnameElement() {
-		TextSenderFirstnameElement textSenderFirstname = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderFirstnameElement.class);
+		TextSenderFirstnameElement textSenderFirstname = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderFirstnameElement.class);
 		this.appendChild(textSenderFirstname);
 		return textSenderFirstname;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-initials}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-initials}
 	 */
 	public TextSenderInitialsElement newTextSenderInitialsElement() {
-		TextSenderInitialsElement textSenderInitials = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderInitialsElement.class);
+		TextSenderInitialsElement textSenderInitials = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderInitialsElement.class);
 		this.appendChild(textSenderInitials);
 		return textSenderInitials;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-lastname}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-lastname}
 	 */
 	public TextSenderLastnameElement newTextSenderLastnameElement() {
-		TextSenderLastnameElement textSenderLastname = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderLastnameElement.class);
+		TextSenderLastnameElement textSenderLastname = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderLastnameElement.class);
 		this.appendChild(textSenderLastname);
 		return textSenderLastname;
 	}
 
 	/**
-	 * Create child element {@odf.element text:sender-phone-private}.
-	 *
+	 * Create child element {@odf.element
+	 * text:sender-phone-private}.
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
-	 * @return the element {@odf.element text:sender-phone-private}
+	 * 
+	 * @return the element {@odf.element
+	 *         text:sender-phone-private}
 	 */
 	public TextSenderPhonePrivateElement newTextSenderPhonePrivateElement() {
-		TextSenderPhonePrivateElement textSenderPhonePrivate = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderPhonePrivateElement.class);
+		TextSenderPhonePrivateElement textSenderPhonePrivate = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderPhonePrivateElement.class);
 		this.appendChild(textSenderPhonePrivate);
 		return textSenderPhonePrivate;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-phone-work}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-phone-work}
 	 */
 	public TextSenderPhoneWorkElement newTextSenderPhoneWorkElement() {
-		TextSenderPhoneWorkElement textSenderPhoneWork = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderPhoneWorkElement.class);
+		TextSenderPhoneWorkElement textSenderPhoneWork = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderPhoneWorkElement.class);
 		this.appendChild(textSenderPhoneWork);
 		return textSenderPhoneWork;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-position}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-position}
 	 */
 	public TextSenderPositionElement newTextSenderPositionElement() {
-		TextSenderPositionElement textSenderPosition = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderPositionElement.class);
+		TextSenderPositionElement textSenderPosition = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderPositionElement.class);
 		this.appendChild(textSenderPosition);
 		return textSenderPosition;
 	}
 
 	/**
-	 * Create child element {@odf.element text:sender-postal-code}.
-	 *
+	 * Create child element {@odf.element text:sender-postal-code}
+	 * .
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-postal-code}
 	 */
 	public TextSenderPostalCodeElement newTextSenderPostalCodeElement() {
-		TextSenderPostalCodeElement textSenderPostalCode = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderPostalCodeElement.class);
+		TextSenderPostalCodeElement textSenderPostalCode = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderPostalCodeElement.class);
 		this.appendChild(textSenderPostalCode);
 		return textSenderPostalCode;
 	}
 
 	/**
-	 * Create child element {@odf.element text:sender-state-or-province}.
-	 *
+	 * Create child element {@odf.element
+	 * text:sender-state-or-province}.
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
-	 * @return the element {@odf.element text:sender-state-or-province}
+	 * 
+	 * @return the element {@odf.element
+	 *         text:sender-state-or-province}
 	 */
 	public TextSenderStateOrProvinceElement newTextSenderStateOrProvinceElement() {
-		TextSenderStateOrProvinceElement textSenderStateOrProvince = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderStateOrProvinceElement.class);
+		TextSenderStateOrProvinceElement textSenderStateOrProvince = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderStateOrProvinceElement.class);
 		this.appendChild(textSenderStateOrProvince);
 		return textSenderStateOrProvince;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-street}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-street}
 	 */
 	public TextSenderStreetElement newTextSenderStreetElement() {
-		TextSenderStreetElement textSenderStreet = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderStreetElement.class);
+		TextSenderStreetElement textSenderStreet = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderStreetElement.class);
 		this.appendChild(textSenderStreet);
 		return textSenderStreet;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sender-title}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sender-title}
 	 */
 	public TextSenderTitleElement newTextSenderTitleElement() {
-		TextSenderTitleElement textSenderTitle = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSenderTitleElement.class);
+		TextSenderTitleElement textSenderTitle = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSenderTitleElement.class);
 		this.appendChild(textSenderTitle);
 		return textSenderTitle;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sequence}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:sequence}
 	 */
-	 public TextSequenceElement newTextSequenceElement(String styleNumFormatValue, String textNameValue) {
-		TextSequenceElement textSequence = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSequenceElement.class);
+	public TextSequenceElement newTextSequenceElement(
+			String styleNumFormatValue, String textNameValue) {
+		TextSequenceElement textSequence = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSequenceElement.class);
 		textSequence.setStyleNumFormatAttribute(styleNumFormatValue);
 		textSequence.setTextNameAttribute(textNameValue);
 		this.appendChild(textSequence);
@@ -1686,92 +2091,103 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:sequence-ref}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sequence-ref}
 	 */
 	public TextSequenceRefElement newTextSequenceRefElement() {
-		TextSequenceRefElement textSequenceRef = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSequenceRefElement.class);
+		TextSequenceRefElement textSequenceRef = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSequenceRefElement.class);
 		this.appendChild(textSequenceRef);
 		return textSequenceRef;
 	}
 
 	/**
 	 * Create child element {@odf.element text:sheet-name}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:sheet-name}
 	 */
 	public TextSheetNameElement newTextSheetNameElement() {
-		TextSheetNameElement textSheetName = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSheetNameElement.class);
+		TextSheetNameElement textSheetName = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSheetNameElement.class);
 		this.appendChild(textSheetName);
 		return textSheetName;
 	}
 
 	/**
 	 * Create child element {@odf.element text:soft-page-break}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:soft-page-break}
 	 */
 	public TextSoftPageBreakElement newTextSoftPageBreakElement() {
-		TextSoftPageBreakElement textSoftPageBreak = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSoftPageBreakElement.class);
+		TextSoftPageBreakElement textSoftPageBreak = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSoftPageBreakElement.class);
 		this.appendChild(textSoftPageBreak);
 		return textSoftPageBreak;
 	}
 
 	/**
 	 * Create child element {@odf.element text:span}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:span}
 	 */
 	public TextSpanElement newTextSpanElement() {
-		TextSpanElement textSpan = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSpanElement.class);
+		TextSpanElement textSpan = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSpanElement.class);
 		this.appendChild(textSpan);
 		return textSpan;
 	}
 
 	/**
 	 * Create child element {@odf.element text:subject}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:subject}
 	 */
 	public TextSubjectElement newTextSubjectElement() {
-		TextSubjectElement textSubject = ((OdfFileDom) this.ownerDocument).newOdfElement(TextSubjectElement.class);
+		TextSubjectElement textSubject = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextSubjectElement.class);
 		this.appendChild(textSubject);
 		return textSubject;
 	}
 
 	/**
 	 * Create child element {@odf.element text:tab}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:tab}
 	 */
 	public TextTabElement newTextTabElement() {
-		TextTabElement textTab = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTabElement.class);
+		TextTabElement textTab = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTabElement.class);
 		this.appendChild(textTab);
 		return textTab;
 	}
 
 	/**
 	 * Create child element {@odf.element text:table-count}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:table-count}
 	 */
-	 public TextTableCountElement newTextTableCountElement(String styleNumFormatValue) {
-		TextTableCountElement textTableCount = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTableCountElement.class);
+	public TextTableCountElement newTextTableCountElement(
+			String styleNumFormatValue) {
+		TextTableCountElement textTableCount = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTableCountElement.class);
 		textTableCount.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textTableCount);
 		return textTableCount;
@@ -1779,79 +2195,88 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:table-formula}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:table-formula}
 	 */
 	public TextTableFormulaElement newTextTableFormulaElement() {
-		TextTableFormulaElement textTableFormula = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTableFormulaElement.class);
+		TextTableFormulaElement textTableFormula = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTableFormulaElement.class);
 		this.appendChild(textTableFormula);
 		return textTableFormula;
 	}
 
 	/**
 	 * Create child element {@odf.element text:template-name}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:template-name}
 	 */
 	public TextTemplateNameElement newTextTemplateNameElement() {
-		TextTemplateNameElement textTemplateName = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTemplateNameElement.class);
+		TextTemplateNameElement textTemplateName = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTemplateNameElement.class);
 		this.appendChild(textTemplateName);
 		return textTemplateName;
 	}
 
 	/**
 	 * Create child element {@odf.element text:text-input}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:text-input}
 	 */
 	public TextTextInputElement newTextTextInputElement() {
-		TextTextInputElement textTextInput = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTextInputElement.class);
+		TextTextInputElement textTextInput = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTextInputElement.class);
 		this.appendChild(textTextInput);
 		return textTextInput;
 	}
 
 	/**
 	 * Create child element {@odf.element text:time}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:time}
 	 */
 	public TextTimeElement newTextTimeElement() {
-		TextTimeElement textTime = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTimeElement.class);
+		TextTimeElement textTime = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTimeElement.class);
 		this.appendChild(textTime);
 		return textTime;
 	}
 
 	/**
 	 * Create child element {@odf.element text:title}.
-	 *
+	 * 
 	 * Child element is new in Odf 1.2
-	 *
+	 * 
 	 * @return the element {@odf.element text:title}
 	 */
 	public TextTitleElement newTextTitleElement() {
-		TextTitleElement textTitle = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTitleElement.class);
+		TextTitleElement textTitle = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTitleElement.class);
 		this.appendChild(textTitle);
 		return textTitle;
 	}
 
 	/**
 	 * Create child element {@odf.element text:toc-mark}.
-	 *
-	 * @param textStringValueValue  the <code>String</code> value of <code>TextStringValueAttribute</code>, see {@odf.attribute  text:string-value} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textStringValueValue
+	 *            the <code>String</code> value of
+	 *            <code>TextStringValueAttribute</code>, see            {@odf.attribute
+	 *  text:string-value} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:toc-mark}
 	 */
-	 public TextTocMarkElement newTextTocMarkElement(String textStringValueValue) {
-		TextTocMarkElement textTocMark = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTocMarkElement.class);
+	public TextTocMarkElement newTextTocMarkElement(String textStringValueValue) {
+		TextTocMarkElement textTocMark = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTocMarkElement.class);
 		textTocMark.setTextStringValueAttribute(textStringValueValue);
 		this.appendChild(textTocMark);
 		return textTocMark;
@@ -1859,14 +2284,17 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:toc-mark-end}.
-	 *
-	 * @param textIdValue  the <code>String</code> value of <code>TextIdAttribute</code>, see {@odf.attribute  text:id} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textIdValue
+	 *            the <code>String</code> value of <code>TextIdAttribute</code>,
+	 *            see {@odf.attribute text:id} at specification
+	 *            Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:toc-mark-end}
 	 */
-	 public TextTocMarkEndElement newTextTocMarkEndElement(String textIdValue) {
-		TextTocMarkEndElement textTocMarkEnd = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTocMarkEndElement.class);
+	public TextTocMarkEndElement newTextTocMarkEndElement(String textIdValue) {
+		TextTocMarkEndElement textTocMarkEnd = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTocMarkEndElement.class);
 		textTocMarkEnd.setTextIdAttribute(textIdValue);
 		this.appendChild(textTocMarkEnd);
 		return textTocMarkEnd;
@@ -1874,14 +2302,17 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:toc-mark-start}.
-	 *
-	 * @param textIdValue  the <code>String</code> value of <code>TextIdAttribute</code>, see {@odf.attribute  text:id} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textIdValue
+	 *            the <code>String</code> value of <code>TextIdAttribute</code>,
+	 *            see {@odf.attribute text:id} at specification
+	 *            Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:toc-mark-start}
 	 */
-	 public TextTocMarkStartElement newTextTocMarkStartElement(String textIdValue) {
-		TextTocMarkStartElement textTocMarkStart = ((OdfFileDom) this.ownerDocument).newOdfElement(TextTocMarkStartElement.class);
+	public TextTocMarkStartElement newTextTocMarkStartElement(String textIdValue) {
+		TextTocMarkStartElement textTocMarkStart = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextTocMarkStartElement.class);
 		textTocMarkStart.setTextIdAttribute(textIdValue);
 		this.appendChild(textTocMarkStart);
 		return textTocMarkStart;
@@ -1889,14 +2320,18 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:user-defined}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:user-defined}
 	 */
-	 public TextUserDefinedElement newTextUserDefinedElement(String textNameValue) {
-		TextUserDefinedElement textUserDefined = ((OdfFileDom) this.ownerDocument).newOdfElement(TextUserDefinedElement.class);
+	public TextUserDefinedElement newTextUserDefinedElement(String textNameValue) {
+		TextUserDefinedElement textUserDefined = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextUserDefinedElement.class);
 		textUserDefined.setTextNameAttribute(textNameValue);
 		this.appendChild(textUserDefined);
 		return textUserDefined;
@@ -1904,14 +2339,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:user-field-get}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:user-field-get}
 	 */
-	 public TextUserFieldGetElement newTextUserFieldGetElement(String textNameValue) {
-		TextUserFieldGetElement textUserFieldGet = ((OdfFileDom) this.ownerDocument).newOdfElement(TextUserFieldGetElement.class);
+	public TextUserFieldGetElement newTextUserFieldGetElement(
+			String textNameValue) {
+		TextUserFieldGetElement textUserFieldGet = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextUserFieldGetElement.class);
 		textUserFieldGet.setTextNameAttribute(textNameValue);
 		this.appendChild(textUserFieldGet);
 		return textUserFieldGet;
@@ -1919,14 +2359,19 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:user-field-input}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:user-field-input}
 	 */
-	 public TextUserFieldInputElement newTextUserFieldInputElement(String textNameValue) {
-		TextUserFieldInputElement textUserFieldInput = ((OdfFileDom) this.ownerDocument).newOdfElement(TextUserFieldInputElement.class);
+	public TextUserFieldInputElement newTextUserFieldInputElement(
+			String textNameValue) {
+		TextUserFieldInputElement textUserFieldInput = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextUserFieldInputElement.class);
 		textUserFieldInput.setTextNameAttribute(textNameValue);
 		this.appendChild(textUserFieldInput);
 		return textUserFieldInput;
@@ -1934,15 +2379,23 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:user-index-mark}.
-	 *
-	 * @param textIndexNameValue  the <code>String</code> value of <code>TextIndexNameAttribute</code>, see {@odf.attribute  text:index-name} at specification
-	 * @param textStringValueValue  the <code>String</code> value of <code>TextStringValueAttribute</code>, see {@odf.attribute  text:string-value} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textIndexNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextIndexNameAttribute</code>, see            {@odf.attribute
+	 *  text:index-name} at specification
+	 * @param textStringValueValue
+	 *            the <code>String</code> value of
+	 *            <code>TextStringValueAttribute</code>, see            {@odf.attribute
+	 *  text:string-value} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:user-index-mark}
 	 */
-	 public TextUserIndexMarkElement newTextUserIndexMarkElement(String textIndexNameValue, String textStringValueValue) {
-		TextUserIndexMarkElement textUserIndexMark = ((OdfFileDom) this.ownerDocument).newOdfElement(TextUserIndexMarkElement.class);
+	public TextUserIndexMarkElement newTextUserIndexMarkElement(
+			String textIndexNameValue, String textStringValueValue) {
+		TextUserIndexMarkElement textUserIndexMark = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextUserIndexMarkElement.class);
 		textUserIndexMark.setTextIndexNameAttribute(textIndexNameValue);
 		textUserIndexMark.setTextStringValueAttribute(textStringValueValue);
 		this.appendChild(textUserIndexMark);
@@ -1950,31 +2403,45 @@ public class TextMetaElement extends OdfElement {
 	}
 
 	/**
-	 * Create child element {@odf.element text:user-index-mark-end}.
-	 *
-	 * @param textIdValue  the <code>String</code> value of <code>TextIdAttribute</code>, see {@odf.attribute  text:id} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * Create child element {@odf.element
+	 * text:user-index-mark-end}.
+	 * 
+	 * @param textIdValue
+	 *            the <code>String</code> value of <code>TextIdAttribute</code>,
+	 *            see {@odf.attribute text:id} at specification
+	 *            Child element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:user-index-mark-end}
 	 */
-	 public TextUserIndexMarkEndElement newTextUserIndexMarkEndElement(String textIdValue) {
-		TextUserIndexMarkEndElement textUserIndexMarkEnd = ((OdfFileDom) this.ownerDocument).newOdfElement(TextUserIndexMarkEndElement.class);
+	public TextUserIndexMarkEndElement newTextUserIndexMarkEndElement(
+			String textIdValue) {
+		TextUserIndexMarkEndElement textUserIndexMarkEnd = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextUserIndexMarkEndElement.class);
 		textUserIndexMarkEnd.setTextIdAttribute(textIdValue);
 		this.appendChild(textUserIndexMarkEnd);
 		return textUserIndexMarkEnd;
 	}
 
 	/**
-	 * Create child element {@odf.element text:user-index-mark-start}.
-	 *
-	 * @param textIdValue  the <code>String</code> value of <code>TextIdAttribute</code>, see {@odf.attribute  text:id} at specification
-	 * @param textIndexNameValue  the <code>String</code> value of <code>TextIndexNameAttribute</code>, see {@odf.attribute  text:index-name} at specification
-	 * Child element is new in Odf 1.2
-	 *
-	 * @return the element {@odf.element text:user-index-mark-start}
+	 * Create child element {@odf.element
+	 * text:user-index-mark-start}.
+	 * 
+	 * @param textIdValue
+	 *            the <code>String</code> value of <code>TextIdAttribute</code>,
+	 *            see {@odf.attribute text:id} at specification
+	 * @param textIndexNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextIndexNameAttribute</code>, see            {@odf.attribute
+	 *  text:index-name} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
+	 * @return the element {@odf.element
+	 *         text:user-index-mark-start}
 	 */
-	 public TextUserIndexMarkStartElement newTextUserIndexMarkStartElement(String textIdValue, String textIndexNameValue) {
-		TextUserIndexMarkStartElement textUserIndexMarkStart = ((OdfFileDom) this.ownerDocument).newOdfElement(TextUserIndexMarkStartElement.class);
+	public TextUserIndexMarkStartElement newTextUserIndexMarkStartElement(
+			String textIdValue, String textIndexNameValue) {
+		TextUserIndexMarkStartElement textUserIndexMarkStart = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextUserIndexMarkStartElement.class);
 		textUserIndexMarkStart.setTextIdAttribute(textIdValue);
 		textUserIndexMarkStart.setTextIndexNameAttribute(textIndexNameValue);
 		this.appendChild(textUserIndexMarkStart);
@@ -1983,14 +2450,18 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:variable-get}.
-	 *
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:variable-get}
 	 */
-	 public TextVariableGetElement newTextVariableGetElement(String textNameValue) {
-		TextVariableGetElement textVariableGet = ((OdfFileDom) this.ownerDocument).newOdfElement(TextVariableGetElement.class);
+	public TextVariableGetElement newTextVariableGetElement(String textNameValue) {
+		TextVariableGetElement textVariableGet = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextVariableGetElement.class);
 		textVariableGet.setTextNameAttribute(textNameValue);
 		this.appendChild(textVariableGet);
 		return textVariableGet;
@@ -1998,15 +2469,23 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:variable-input}.
-	 *
-	 * @param officeValueTypeValue  the <code>String</code> value of <code>OfficeValueTypeAttribute</code>, see {@odf.attribute  office:value-type} at specification
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param officeValueTypeValue
+	 *            the <code>String</code> value of
+	 *            <code>OfficeValueTypeAttribute</code>, see            {@odf.attribute
+	 *  office:value-type} at specification
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:variable-input}
 	 */
-	 public TextVariableInputElement newTextVariableInputElement(String officeValueTypeValue, String textNameValue) {
-		TextVariableInputElement textVariableInput = ((OdfFileDom) this.ownerDocument).newOdfElement(TextVariableInputElement.class);
+	public TextVariableInputElement newTextVariableInputElement(
+			String officeValueTypeValue, String textNameValue) {
+		TextVariableInputElement textVariableInput = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextVariableInputElement.class);
 		textVariableInput.setOfficeValueTypeAttribute(officeValueTypeValue);
 		textVariableInput.setTextNameAttribute(textNameValue);
 		this.appendChild(textVariableInput);
@@ -2015,16 +2494,28 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:variable-set}.
-	 *
-	 * @param officeValueValue  the <code>Double</code> value of <code>OfficeValueAttribute</code>, see {@odf.attribute  office:value} at specification
-	 * @param officeValueTypeValue  the <code>String</code> value of <code>OfficeValueTypeAttribute</code>, see {@odf.attribute  office:value-type} at specification
-	 * @param textNameValue  the <code>String</code> value of <code>TextNameAttribute</code>, see {@odf.attribute  text:name} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param officeValueValue
+	 *            the <code>Double</code> value of
+	 *            <code>OfficeValueAttribute</code>, see            {@odf.attribute
+	 *  office:value} at specification
+	 * @param officeValueTypeValue
+	 *            the <code>String</code> value of
+	 *            <code>OfficeValueTypeAttribute</code>, see            {@odf.attribute
+	 *  office:value-type} at specification
+	 * @param textNameValue
+	 *            the <code>String</code> value of
+	 *            <code>TextNameAttribute</code>, see            {@odf.attribute
+	 *  text:name} at specification Child element is
+	 *            new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:variable-set}
 	 */
-	 public TextVariableSetElement newTextVariableSetElement(double officeValueValue, String officeValueTypeValue, String textNameValue) {
-		TextVariableSetElement textVariableSet = ((OdfFileDom) this.ownerDocument).newOdfElement(TextVariableSetElement.class);
+	public TextVariableSetElement newTextVariableSetElement(
+			double officeValueValue, String officeValueTypeValue,
+			String textNameValue) {
+		TextVariableSetElement textVariableSet = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextVariableSetElement.class);
 		textVariableSet.setOfficeValueAttribute(officeValueValue);
 		textVariableSet.setOfficeValueTypeAttribute(officeValueTypeValue);
 		textVariableSet.setTextNameAttribute(textNameValue);
@@ -2034,34 +2525,52 @@ public class TextMetaElement extends OdfElement {
 
 	/**
 	 * Create child element {@odf.element text:word-count}.
-	 *
-	 * @param styleNumFormatValue  the <code>String</code> value of <code>StyleNumFormatAttribute</code>, see {@odf.attribute  style:num-format} at specification
-	 * Child element is new in Odf 1.2
-	 *
+	 * 
+	 * @param styleNumFormatValue
+	 *            the <code>String</code> value of
+	 *            <code>StyleNumFormatAttribute</code>, see            {@odf.attribute
+	 *  style:num-format} at specification Child
+	 *            element is new in Odf 1.2
+	 * 
 	 * @return the element {@odf.element text:word-count}
 	 */
-	 public TextWordCountElement newTextWordCountElement(String styleNumFormatValue) {
-		TextWordCountElement textWordCount = ((OdfFileDom) this.ownerDocument).newOdfElement(TextWordCountElement.class);
+	public TextWordCountElement newTextWordCountElement(
+			String styleNumFormatValue) {
+		TextWordCountElement textWordCount = ((OdfFileDom) this.ownerDocument)
+				.newOdfElement(TextWordCountElement.class);
 		textWordCount.setStyleNumFormatAttribute(styleNumFormatValue);
 		this.appendChild(textWordCount);
 		return textWordCount;
 	}
 
-	@Override
-	public void accept(ElementVisitor visitor) {
-		if (visitor instanceof DefaultElementVisitor) {
-			DefaultElementVisitor defaultVisitor = (DefaultElementVisitor) visitor;
-			defaultVisitor.visit(this);
-		} else {
-			visitor.visit(this);
-		}
-	}
 	/**
-	 * Add text content. Only elements which are allowed to have text content offer this method.
+	 * Add text content. Only elements which are allowed to have text content
+	 * offer this method.
 	 */
 	public void newTextNode(String content) {
 		if (content != null && !content.equals("")) {
 			this.appendChild(this.getOwnerDocument().createTextNode(content));
 		}
 	}
+
+	/**
+	 * Set text content. Only elements which are allowed to have text content
+	 * offer this method.
+	 */
+	public void setTextContent(String content) {
+		super.setTextContent(content);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
+	}
+
+	protected void onRemoveNode() {
+		super.onRemoveNode();
+		((OdfFileDom) this.ownerDocument).getInContentMetadataCache().remove(
+				this);
+	}
+
+	protected void onInsertNode() {
+		super.onInsertNode();
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
+	}
+
 }

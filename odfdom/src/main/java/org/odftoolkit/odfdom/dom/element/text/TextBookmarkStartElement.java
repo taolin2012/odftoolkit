@@ -1,3 +1,4 @@
+
 /************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER
@@ -27,18 +28,15 @@
 package org.odftoolkit.odfdom.dom.element.text;
 
 import org.odftoolkit.odfdom.pkg.OdfElement;
-import org.odftoolkit.odfdom.pkg.ElementVisitor;
 import org.odftoolkit.odfdom.pkg.OdfFileDom;
 import org.odftoolkit.odfdom.pkg.OdfName;
 import org.odftoolkit.odfdom.dom.OdfDocumentNamespace;
-import org.odftoolkit.odfdom.dom.DefaultElementVisitor;
 import org.odftoolkit.odfdom.dom.attribute.text.TextNameAttribute;
 import org.odftoolkit.odfdom.dom.attribute.xhtml.XhtmlAboutAttribute;
 import org.odftoolkit.odfdom.dom.attribute.xhtml.XhtmlContentAttribute;
 import org.odftoolkit.odfdom.dom.attribute.xhtml.XhtmlDatatypeAttribute;
 import org.odftoolkit.odfdom.dom.attribute.xhtml.XhtmlPropertyAttribute;
 import org.odftoolkit.odfdom.dom.attribute.xml.XmlIdAttribute;
-
 /**
  * DOM implementation of OpenDocument element  {@odf.element text:bookmark-start}.
  *
@@ -113,6 +111,7 @@ public class TextBookmarkStartElement extends OdfElement {
 		XhtmlAboutAttribute attr = new XhtmlAboutAttribute((OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xhtmlAboutValue);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 
 	/**
@@ -137,6 +136,7 @@ public class TextBookmarkStartElement extends OdfElement {
 		XhtmlContentAttribute attr = new XhtmlContentAttribute((OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xhtmlContentValue);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 
 	/**
@@ -161,6 +161,7 @@ public class TextBookmarkStartElement extends OdfElement {
 		XhtmlDatatypeAttribute attr = new XhtmlDatatypeAttribute((OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xhtmlDatatypeValue);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 
 	/**
@@ -185,6 +186,7 @@ public class TextBookmarkStartElement extends OdfElement {
 		XhtmlPropertyAttribute attr = new XhtmlPropertyAttribute((OdfFileDom) this.ownerDocument);
 		setOdfAttribute(attr);
 		attr.setValue(xhtmlPropertyValue);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 
 	/**
@@ -211,13 +213,23 @@ public class TextBookmarkStartElement extends OdfElement {
 		attr.setValue(xmlIdValue);
 	}
 
-	@Override
-	public void accept(ElementVisitor visitor) {
-		if (visitor instanceof DefaultElementVisitor) {
-			DefaultElementVisitor defaultVisitor = (DefaultElementVisitor) visitor;
-			defaultVisitor.visit(this);
-		} else {
-			visitor.visit(this);
-		}
+
+	/**
+	 * Set text content. Only elements which are allowed to have text content offer this method.
+	 */
+	public void setTextContent(String content){
+		super.setTextContent(content);
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
+	}
+	
+	protected void onRemoveNode() {
+		super.onRemoveNode();
+		((OdfFileDom) this.ownerDocument).getInContentMetadataCache().remove(
+				this);
+	}
+
+	protected void onInsertNode() {
+		super.onInsertNode();
+		((OdfFileDom) this.ownerDocument).updateInContentMetadataCache(this);
 	}
 }
