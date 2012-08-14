@@ -92,9 +92,9 @@ public class OdfHelper {
 			+ "examples" + File.separator + "odf";
 	public static final String ODF10_RNG_FILE_NAME = "OpenDocument-strict-schema-v1.0-os.rng";
 	public static final String ODF11_RNG_FILE_NAME = "OpenDocument-strict-schema-v1.1.rng";
-	public static final String ODF12_RNG_FILE_NAME = "OpenDocument-v1.2-cs01-schema.rng";
-	public static final String ODF12_SIGNATURE_RNG_FILE_NAME = "OpenDocument-v1.2-cs01-dsig-schema.rng";
-	public static final String ODF12_MANIFEST_RNG_FILE_NAME = "OpenDocument-v1.2-cs01-manifest-schema.rng";
+	public static final String ODF12_RNG_FILE_NAME = "OpenDocument-v1.2-os-schema.rng";
+	public static final String ODF12_SIGNATURE_RNG_FILE_NAME = "OpenDocument-v1.2-os-dsig-schema.rng";
+	public static final String ODF12_MANIFEST_RNG_FILE_NAME = "OpenDocument-v1.2-os-manifest-schema.rng";
 	public static String odf12RngFile;
 	public static String odf12SignatureRngFile;
 	public static String odf12ManifestRngFile;

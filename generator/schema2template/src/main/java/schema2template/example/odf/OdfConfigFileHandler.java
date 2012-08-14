@@ -36,11 +36,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Often Process the custom configuration data .xml
- * Liest nur die config.xml
- * Soll man die Konfiguration in einer behalten, oder aufsplitten!
- * Java speczifische + anderes aufteilen
- * Handler für existierende config.xml
+ * Handler for the configuration file. Only reads one single config.xml file
+ * Perhaps the configuration should not kept in one single file but be split.
+ * For instance into Java specific + ODF specific
  */
 class OdfConfigFileHandler extends DefaultHandler {
 
