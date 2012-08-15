@@ -21,10 +21,21 @@
  ************************************************************************/
 package org.odftoolkit.odfdom.pkg.rdfa;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.text.Normalizer;
 
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
+
+import org.apache.clerezza.utils.UriException;
+import org.apache.clerezza.utils.UriUtil;
+
+import sun.nio.cs.ThreadLocalCoders;
 
 public class Util {
 
@@ -88,12 +99,13 @@ public class Util {
 				|| (subPath.length() > superPath.length() && subPath
 						.startsWith(superPath));
 	}
-	
+
 	/**
 	 * To fix the 3 slashes bug for File URI: For example:
 	 * file:/C:/work/test.txt -> file:///C:/work/test.txt
 	 * 
-	 * @param u, the File URI
+	 * @param u
+	 *            , the File URI
 	 * @return the String of the URI
 	 */
 	public static String toExternalForm(URI u) {
@@ -140,6 +152,11 @@ public class Util {
 			sb.append('#');
 			sb.append(u.getFragment());
 		}
-		return sb.toString();
+		String ret = sb.toString();
+		try {
+			ret = UriUtil.encodePath(ret);
+		} catch (UriException e) {
+		}
+		return ret;
 	}
 }
